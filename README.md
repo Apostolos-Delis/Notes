@@ -10,7 +10,7 @@ package together all the markdown files into a pdf.
 
 ### Current Courses Covered
 
-* [How to Start a startup](https://github.com/Apostolos-Delis/Notes/tree/master/vimwiki/online_courses/y_combinator_startup_course)
+* [How to Start a startup](https://github.com/Apostolos-Delis/Notes/tree/master/online_courses/y_combinator_startup_course)
 
 
 
