@@ -6,7 +6,7 @@ Based on the Ycombinators course found [here](http://startupclass.samaltman.com/
 Idea, Product, Team, Execution
 
 1. Idea:
-    * Idea is no always as that important, but a bad idea is still bad
+    * Idea is not always as that important, but a bad idea is still bad
     * Most good companies have better ideas 
     * Always start with the idea, wait until you have a good idea
     * Startups are typically mission-oriented
