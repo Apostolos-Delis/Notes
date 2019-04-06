@@ -290,9 +290,6 @@ pairs of relations. This is how we will do it in SQL, unsurprisingly.
 <!--$a_2+b-\sigma = 2$-->
 
 <!--y = 40 - 40 \frac{39}{40}-->
-\begin{equation}
-y = 40 - 40^x
-\end{equation}
 <!--1. Select &sigma-->
 <!--2. Projection (-->
 <!--3. Cartesian Product (⇥)-->

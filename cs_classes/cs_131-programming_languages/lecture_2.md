@@ -82,4 +82,163 @@
 4. Good Support for Higher-Order Functions 
     * Really easy to implement these features (This led to creation of lambda expressions 
 
+**Ocaml Basics**
+
+* Variables
+
+    ```ocaml
+    # let my_value = 5;;
+    val my_value = 5
+    ```
+* List
+
+    ```ocaml
+    # let numbers = [ 1; 2; 3; 4; 5 ]
+    ```
+    * All elements must have the same type
+    * Under the hood, lists are immutable singly-linked lists
+    * List Operations: 
+        * Adding new elements is right-associative
+
+            ```ocaml
+            0::[1;2;3] -> [0;1;2;3]
+            ```
+        * Cannod append to the end
+    * Lists are immutable
+* Functions
+    * Functions in Ocaml can be relatively similar to other languages
+
+        ```ocaml
+        # let average a b = 
+            (a + b) / 2;;;
+        val average : int -> int -> int = <fun>
+
+        (* float version *)
+        # let average a b = 
+            (a +. b) /2.0;;
+        val average : float -> float -> float = <fun>
+        ```
+
+    * `let` binds a function with parameters a and b to name average
+* Recursive Functions
+    * Recursive functions must be specified explicitly (`let rec`), otherwise the 
+        compiler will give an error about an undefined function
+    
+        ```ocaml
+        # let rec factorial a = 
+            if a = 1 then 1 else a * factorial (a-1);;
+        val factorial : int -> int = <fun> 
+        ```
+* Defining Local Variables in Functions
+    * add keyword `in` after the let statement to make the value available in the following 
+        statement
+
+        ```ocaml
+        # let average a b = 
+            let sum = a +.b in 
+            sum /. 2.0;;
+        val average : float -> float -> float = <fun>
+        ```
+* Useful List Operations - map
+    * Map transforms a list by applying a function on each element 
+
+        ```ocaml
+        # List.map(fun x -> x*x) [1; 2; 3; 4; 5];;
+        - : int list = [1; 4; 9; 16; 25]
+        ```
+
+* Useful list operations - rev 
+    * rev reverses the list: 
+
+        ```ocaml
+        # List.rev [1; 2; 3; 4] 
+        - : int list = [4; 3; 2; 1]
+        ```
+
+* Useful list operations - filter 
+    * filter filters elements of the list that do not fit a certain critera
+
+        ```ocaml
+        # List.filter(fun x -> x = 2) [1; 2; 3; 4] 
+        - : int list = [2]
+        ```
+
+* Useful list operations - for_all
+    * Returns true if all elements match the condition
+
+        ```ocaml
+        # List.for_all(fun x -> x = 2) [1; 2; 3; 4; 5];;
+        - : bool = false
+        # List.for_all(fun x -> x = 2) [2; 2; 2];;
+        - : bool = true
+        ```
+
+* Useful list operations - exists
+    * Exists checks if any elemnt in the list matches a condition 
+
+        ```ocaml
+        # List.exists(fun x -> x = 3) [1; 2; 3; 4; 5];;
+        - : bool = true
+        # List.exists(fun x -> x = 6) [1; 2; 3; 4; 5];;
+        - : bool = false
+        ```
+
+* Pattern Matching 
+    * More powerful version of the switch statement used in some other languages
+    * Pattern matching allows you to list all the different cases in a clean way
+
+        ```ocaml
+        # let is_zero x = 
+            0 -> true 
+          | _ -> false;;
+        ```
+    * Patterns can also include conditions using when statement
+        
+        ```ocaml
+        # let rec factorial a = match a with 
+            x when x < 2 -> 1
+          | x -> x * factorial (x-1);;
+        ```
+
+* Data Types - Native Types 
+    * More native types: 
+        - `list([1; 2; 3; 4; 5], ["foo"; "bar"])`
+            * Elements are tuples
+* Data Types - Our Own Data Types 
+    * The most simple use case is to wrap an existing type 
+    
+        ```ocaml
+        type age = int;;
+        type name = string;;
+        type person = age * name;;
+        
+        let print_name(p: person) = match p with
+        | (p_age, p_name) -> print_string p_name;;
+
+        let my_person = (111, "Bilbo": person);;
+        print_name my_person;;
+        ```
+
+* Data types - Variants
+    * Used when there are multiple subtypes of one main type
+
+        ```ocaml
+        type ccle_user = 
+            Student of string 
+            | TA of string 
+            | Professor of string;;
+
+        type my_type = 
+        | A of string 
+        | B of int;;
+
+        let my_print x = match x with 
+        | A a -> print_string a 
+        | B b -> print_int b;;
+
+        my_print(A "some string");;
+        "some string"
+        my_print(B 5);;
+        5
+        ```
 
