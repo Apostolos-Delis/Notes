@@ -138,5 +138,104 @@ programs do: their behavior and meaning.
 
 ### Chapter 5 - A First Look at ML
 
-1. h
+1. Constants 
+    * ML follows generic syntax for constants, however `-` is used as the negation operator
 
+       ```ocaml
+       - 1234;
+       val it = 123.4 : real
+       - true
+       val it = true : bool
+       - "fred";
+       val it = "fred" : string
+       ``` 
+2. Operators 
+    * ML has all the classic arithmetic operators
+
+        ```ocaml
+        - ~ 1 + 2 - 3 * 4 div 5 mod 6;
+        val it = -1 ; int
+        ```
+    * It also supports comparison operators
+
+        ```ocaml
+        - 2 < 3; 
+        val it = true : bool
+        ```
+    * The operators in ML have the following precedence levels
+        1. `not, -`
+        2. `*, div, mod, /`
+        3. `+, -, ^`
+        4. `<, >, <=, >=, <>, =`
+        5. `and, also`
+        6. `or, else`
+
+3. Conditional Expressions 
+    * if-else statements act very similar to imperative languages
+        
+        ```ocaml
+        - if 1 < 2 then #"x" else #"y";
+        val it = #"x" : char 
+        ```
+        
+4. Type Conversion and Function Application
+    * ML operators are <u>overloaded</u> to work differently on different 
+        types of variables 
+    * They do not support operations between different types, so for example, 
+        `+` is not defined for a `real` and a `int`
+    *  Can cast types if need to: 
+        
+        ```ocaml
+        - real(123) 
+        val it = 123.0 : real 
+        ```
+
+    * **Note:** you do not have to use () in ml to call a function, 
+        can just call using `fun_name param_a param_b ...`
+ 
+* Tuples and Lists 
+    * tuples are an ordered collection of values 
+
+        ```ocaml
+        - val barney * (1+2,3.0*4.0,"brown")
+        val barney = (3, 12.0, "brown") : int * real * string 
+        ```
+    * ML also supports lists, which must contain elements of the same type
+
+        ```ocaml
+        - [1, 2, 3];
+        val it = [1,2,3] : int list
+        ``` 
+    * Lists can contain any type of element, even tuples or other lists, as long 
+        as long as they are the same type  
+    * You can also add new elements to the list with the use of `::`
+        
+        ```ocaml
+        - 2::3::3::[];
+        val it = [2, 3, 3]
+        ```
+    * Note that the empty list in ml can be written as `nil`
+    
+### Chapter 7 - A Second Look at ML 
+
+1. Simple Patterns 
+    * The simplest pattern is `_` which matches anything
+    * Here is an example function which uses `_` to always return "yes"
+        
+        ```ocaml
+        - fun f _ = "yes"
+        val f = fn : 'a -> string
+        - f 33.2 
+        val it = "yes" : string 
+        ```
+2. Complex Patterns
+    * Any list of patterns is a valid pattern 
+        
+        ```ocaml
+        - fun f [a, _] _ = a
+        Warning: match nonexaustive
+                    a :: _ :: nil => ...
+        val f = fn : 'a list -> 'a
+        - f [1, 2];
+        val it = 1 : int
+        ```
