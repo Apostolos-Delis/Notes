@@ -1,4 +1,4 @@
-## Lecture 1 - Relational Algebra
+## Lecture 1 - Relational Models
 
 **Dr. Ryan Rosario**
 
