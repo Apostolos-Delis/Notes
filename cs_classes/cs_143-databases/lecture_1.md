@@ -1,4 +1,4 @@
-## Lecture 1 - Relational Models
+## Lecture 1 - Relational Models - 4/5/19
 
 **Dr. Ryan Rosario**
 

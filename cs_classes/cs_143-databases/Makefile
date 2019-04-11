@@ -10,8 +10,10 @@ EXTRA_PDFS=
 
 OUTPUT_PDF=databases.pdf
 
-all: $(OUTPUT_PDF)
-.PHONY: pdf
+
+all: $(BUILD_PDF_FILES)
+
+build: $(OUTPUT_PDF)
 
 $(OUTPUT_PDF): $(BUILD_PDF_FILES)
 	@gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/default \
@@ -22,6 +24,6 @@ build/%.pdf: %.md
 	@mkdir -p $$(dirname $@)
 	@pandoc -V geometry:margin=1in -o $@ $?
 
-clean: 
-	@rm -rf $(OUTPUT_PDF) build &>/dev/null 
+clean:
+	@rm -rf $(OUTPUT_PDF) build &>/dev/null
 .PHONY: clean

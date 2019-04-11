@@ -1,4 +1,4 @@
-## Lecture 2 - Relational Algebra
+## Lecture 2 - Relational Algebra - 4/7/19
 
 Relational algebra is a semantic system used for modeling
 the operations on relational data developed by Edgar F. Codd at IBM
