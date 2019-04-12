@@ -52,4 +52,3 @@
         ```
     * Note that in the previous example, the second method is preferred and follows functional
         programming as a paradigm better
-
