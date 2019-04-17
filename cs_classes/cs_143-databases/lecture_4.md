@@ -1,4 +1,4 @@
-## Lecture 3 - More on SQL - 4/15/19
+## Lecture 4 - More on SQL - 4/15/19
 
 #### HAVING
 
