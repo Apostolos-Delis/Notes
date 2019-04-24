@@ -195,3 +195,29 @@
         * Compiler will see if this code will work no matter what the type is
         * Less code bloat (only one copy of the code)
         * All type checking is performed at once
+
+#### Java Introduction
+
+* Compiled into byte code that is then run ob the Java Virtual Machine
+* The use of the Java Virtual Machine allows compiled bytecode to be run on any machine
+* Java bytecode is a commpromise vs compiled and interpreted code that allows platform
+    independence and some performance (since interpreted code is difficult to optimize)
+* Everything in Java is inside of a class
+* Java Memory Model defines how threads interact through memory.
+    * Each thread has its own stack, but share the heap
+* When there is only one thread, the Java compiler is allowed to change the order of the
+    code as long as the result of execution is the same
+* With multiple threads, it becomes more challenging to do these types of complications.
+    * Here there is a need for human input to set constraints for what can be optimized
+
+#### The `volatile` Keyword
+
+* Defining the variable `volatile` guarantees that other threads will see the changes
+    immediatly
+    
+    ```java
+    public class SharedObject {
+        public volatile int counter = 0;
+    }
+    ```
+
