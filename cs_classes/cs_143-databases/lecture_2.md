@@ -74,7 +74,7 @@ For the following examples, we will use the following data:
         \begin{equation}
         A \times{} B = \{(a,b):a\in{}A,b\in{}B\}
         \end{equation}
-    * If two relations, $R_1, R_2$ have attribut nums $n_1, n_2$ then
+    * If two relations, $R_1, R_2$ have attribute nums $n_1, n_2$ then
         \begin{equation}
         \|R_1 \times{} R_2\| = n_1n_2
         \end{equation}
@@ -187,7 +187,7 @@ For the following examples, we will use the following data:
         \end{equation}
     * This statement says "rename relation E to X with attribute names given by $A_1, ... , A_n$"
 12. Aggregation
-    * Can represent aggregatiosn on attributes using $\gamma$
+    * Can represent aggregations on attributes using $\gamma$
     * Aggregations are functions applied to groups of tuples in a relation to summarize them
     * Examples include `SUM, AVG, MIN, MAX, DISTINCT-COUNT`
     * Example if you want average number of comment likes per video in youtube_comment

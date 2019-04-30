@@ -180,6 +180,7 @@
     * The query associated with materialized views may take a long time to generate the result, so
         materialized views must be refresed "manually" once in a while
 * Example creation of a materialized view:
+
     ```sql
     CREATE MATERIALIZED VIEW ucla_scooters AS
         SELECT

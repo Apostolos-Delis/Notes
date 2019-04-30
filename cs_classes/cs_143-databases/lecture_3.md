@@ -1,4 +1,4 @@
-## Lecture 2 - Introduction to SQL - 4/10/19
+## Lecture 3 - Introduction to SQL - 4/10/19
 
 #### Why use PostgreSQL?
 
