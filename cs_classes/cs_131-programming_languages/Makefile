@@ -1,5 +1,7 @@
 
-MD_FILES=$(shell find . -name \*.md)
+MD_FILES=lecture_1.md lecture_2.md lecture_3.md lecture_4.md \
+		lecture_5.md lecture_6.md lecture_7.md lecture_8.md \
+		midterm_review.md
 
 HTML_FILES=$(MD_FILES:.md=.html)
 BUILD_HTML_FILES=$(HTML_FILES:%=build/%)
@@ -9,7 +11,7 @@ BUILD_PDF_FILES=$(PDF_FILES:%=build/%)
 
 EXTRA_PDFS=
 
-OUTPUT_PDF=databases.pdf
+OUTPUT_PDF=programming_languages.pdf
 
 
 all: $(BUILD_PDF_FILES)
