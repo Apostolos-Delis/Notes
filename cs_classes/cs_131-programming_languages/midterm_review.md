@@ -647,3 +647,146 @@
         takes in an int and then that gives a function that takes in another int
     * Advantages is no tuples, and we get to specialize functions for particular initial
         parameters
+
+### Chapter 14 - Dynamic Memory Allocation
+
+* Lots of things like objects and activation records require memory at runtime
+* Language systems provide a runtime hidden memory management
+* Declaring An Array
+    * A Java array declaration:
+
+        ```java
+        int[] = null
+        ```
+    * Array types are reference types - an array is really an object
+    * Right now, we essentially declared an integer pointer, which can point to an int
+        array
+* Creating an Array:
+
+    ```java
+    int[] a = new int[100];
+    ```
+* Stack of activation Records
+    * For almost all languages, activation records must be allocated dynamically
+    * These are statically allocated variables, that are pushed onto the stack and then
+        freed after they are done
+    * For the stack, the order of variables must be constant and known, what happens if
+        allocations and deallocations happen out of order
+* The Heap Problem and First Fit
+    * A heap is a pool of blocks of memory, with an interface for unordered runtime
+        memory allocation and deallocation
+    * First fit is a linked list of free blocks, to allocate, can just search free list
+        for first adequate block, and allocate however much memory is needed, returning
+        the rest to the rest of the heap
+* Quick Lists
+    * Small blocks tend to be allocated and deallocated much more frequently, so a common
+        optimization is to keep separate free lists for popular block sizes, so here
+        blocks are one constant size
+* Fragmentation
+    * Note the heap may have a problem of fragmentation where there are a lot of
+        small unused pieces of memory.
+* Current Heap Links
+    * A current heap link is a memory location where a value is stored that the running
+        program will use as a heap address
+* Heap Compaction
+    * Manager can move allocated blocks to new locations and update all links on that
+        block
+    * So it can get rid of fragmentation by moving all the allocated blocks to one end
+* Garbage Collection Approaches
+    * **Mark and Sweep**
+        * Uses current heap links in a 2 stage process
+        * Mark - find the live link heaps and mark all the heap blocks linked to them
+        * Sweep - make a pass over the heap and return unmarked blocks to the free pool
+    * **Copying**
+        * A copying collector divides memory in half, and uses only one half at a time
+        * When one half becomes full, find live heap links, and copy live blocks to the
+            other half
+    * **Reference Counting**
+        * Each block has a counter of heap links to it
+        * When counter goes to zero, block is garbage and can be freed
+        * Has a problem with cycles of garbage, and in general performance since the
+            overhead is high
+* Garbage collection
+    * Generational Collection
+        * Have generational counters that divide blocks according to age
+        * Garbage collect in the younger generations more often
+    * Incremental Collection
+        * Collect garbage a little at a time
+        * Avoid having spikes in overhead caused by the mark and sweep operations
+
+
+### Chapter 15 - A Second Look at Java
+
+* Interfaces
+    * A method prototype just gives the method name and type—no method body
+    * An interface is just a collection of method prototypes
+
+        ```java
+        public interface Drawable {
+            void show(int xPos, int yPos);
+            void hide();
+        }
+        ```
+* Implementing Interfaces
+    * A class can declare that it implements a particular interface
+    * Then it must have public functions that match the interface
+* Benefits of an Interface
+    * Interface can be implemented by many classes
+    * Interface leads to use of polymorphism
+* Polymorphism
+    * One class can be derived from another, using the keyword `extends`
+    * Classes that are derived inherit all the parent methods and fields
+* Inheritance Chains
+    * All classes but one are derived from some class
+    * If you do not give an `extends` clause, Java supplies one: `extends` Object
+    * Object is the root class
+* The Object Class
+    * All classes inherit methods from object like:
+        * toString, for converting to a String
+        * equals, for comparing with other objects
+        * hashcode, for computing an int hash code
+* Extending And Implementing
+    * Classes can use `extends` and `implements` togethe
+    * For every class, Java keeps track of what interfaces it implements, the methods it
+        has to define, the methods defined for it, and the fields defined for it
+    * An `implements` affects the first two, but an `extends` affects all four of those
+        options
+* Abstract Classes
+    * Classes can get out of implementing all their methods by making them abstract
+        classes
+    * An abstract class is used only as a base class, no objects for that class will be
+        created
+* Collision Problem and Diamond Problem
+    * When you have multiple classes you inherit from, might have conflicts when two
+        parent classes have a method with the same name
+    * A language that supports multiple inheritance must have mechanisms for handling
+        these problems
+    * Java designers that this additional power was not worth the language complexity
+* Generics
+    * Weakensses are no compile-type type checking on element types and primitives must
+        be stored in their corresponding object type first, so `int` would actually be
+        `Integer`
+    * You can now use generics with the distinct angle bracket notation
+
+        ```java
+        interface Worklist<T> {
+            void add(T item); booleanhasMore();
+            T remove();
+        }
+
+        Worklist<String> w;
+        ...
+        w.add("Hello");
+        String s = w.remove();
+        ```
+* Using Generic Classes
+
+    ```java
+    Stack<String> s1 = new Stack<String>();
+    Stack<Integer> s2 = new Stack<Integer>();
+    s1.add("hello");
+    String s = s1.remove();
+    s2.add(1);
+    inti = s2.remove();
+    ```
+    * Notice the coercions: `int` to `Integer`
