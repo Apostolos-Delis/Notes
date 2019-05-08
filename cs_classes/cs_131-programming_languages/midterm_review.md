@@ -648,6 +648,11 @@
     * Advantages is no tuples, and we get to specialize functions for particular initial
         parameters
 
+### Chapter 10 - Scope
+
+
+
+
 ### Chapter 14 - Dynamic Memory Allocation
 
 * Lots of things like objects and activation records require memory at runtime

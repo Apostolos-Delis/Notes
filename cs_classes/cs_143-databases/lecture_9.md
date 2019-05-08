@@ -131,7 +131,7 @@
     * **Sequential**: Records are stored in sorted order by some search key. becomes
         inefficient after many modifications since these operations are
         $\mathcal{O}(pnq)$
-    * **B+-tree**: Similar to sequential storage, but more efficient after many
+    * **B+tree**: Similar to sequential storage, but more efficient after many
         modifications. Operations about $\mathcal{O}(n\log{}n)$
     * **Multitable Clustering**: Multiple tables are stored in one file, and even in the same
         block. This can improve join performance.
@@ -203,14 +203,14 @@
     ![](images/multilevel_index.png){ width=30% }
 * What happens when we try to insert a record and the disk block where it should be
     stored is already full? Normally, it would require a chain of overflow blocks and
-    this becomes painful, so instead a B+- tree is used
+    this becomes painful, so instead a B+ tree is used
 
-## Ordered Indices and B+-Trees
+## Ordered Indices and B+Trees
 
 
 ![A B+ tree looks like the following](images/B+-tree.png){ width=50% }
 
-* A B+- tree has the following characteristics:
+* A B+ tree has the following characteristics:
     1. Is a self-balancing tree N-ary tree
     2. Requires that paths from root to every leaf have the same length
     3. Contains a root, internal nodes, and leaves.
@@ -233,8 +233,19 @@
     insertion and deletion, and of course space overhead.
 * Each time we traverse a level in the B+ tree, we perform disk I/O – we read an entire
     block.
-* Some disadvantages of B+- trees
+* If there are n items per node, and K keys, the search complexity is
+    $\mathcal{O}(\log_{n}(2)\log_{\lceil\frac{n}{2}\rceil}(K))$
+* Inserting into the B+ Tree follows the following recipe:
+    1. Find the position in the tree where the key should go.
+    2. If that node is not full, insert the key. Else:
+        1. Split the node into two pieces. The original keeps half of the
+            keys. The new node keeys the remaining half.
+        2. Move the middle key to the parent and insert a new in the
+            parent to the new node.
+        3. Keep doing this until there are no more overflows in the parent.
+        4. If the root splits, treat it as if it has an empty parent and split.
+* Some disadvantages of B+ trees
     * Best performance when there are no duplicate keys.
     * Variable length attributes, like strings, make it diffcult to store
         in a tree under this treatment
-    * Bulk loading arbitrary data into a B+ tree is very ineﬃcient.
+    * Bulk loading arbitrary data into a B+ tree is very inefficient.
