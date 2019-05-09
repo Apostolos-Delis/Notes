@@ -650,7 +650,245 @@
 
 ### Chapter 10 - Scope
 
+* Definitions
+    * When there are different variables with the same name, there are different possible
+        bindings for that name
+    * A definition is anything that establishes a possible binding for a name
+* Scope
+    * There may be more than one definition for a given name
+    * An occurrence of a name is in the scope of a given definition of that name whenever
+        that definition governs the binding for that occurrence
+* Blocks
+    * A block is any language construct that contains definitions, and also contains the
+        region of the program where those definitions apply
 
+    ```ocaml
+    let
+        val
+        val
+    in
+        x+y
+    end
+    ```
+* Different ML Blocks
+    * The `let` is just a block: no other purpose
+    * A `fun` definition includes a block
+    * All the matching alternatives are their own block
+* Java Blocks
+    * In Java and other C-like languages, you can combine statements into one compound
+        statement using { and }
+    * A compound statement also serves as a block
+* Classic Block Scope Rule
+    * he scope of a definition is the block containing that definition, minus the scopes
+        of any redefinitions of the same name in interior blocks
+    * Most statically scoped, block-structured languages use this or some minor variation
+* Labeled Namespaces
+    * A labeled namespace is any language construct that contains definitions and a
+        region of the program where those definitions apply
+* ML Structure
+    * A little like a block: a can be used anywhere from definition to the end
+
+        ```ocaml
+        structure Fred = struct
+            val a = 1;
+            fun f x = x + a;
+        end;
+        ```
+* Namespace Advantages
+    * Allow for simple definitions like `max` to be available multiple times in different
+        namespaces
+    * Can avoid name conflicts
+* Dynamic Scoping
+    * Each function has an environment of definitions
+    * If a name that occurs in a function is not found in its environment, its caller’s
+        environment is searched
+    * And if not found there, the search continues back through the chain of callers
+* Static Vs. Dynamic
+    * The scope rules are similar
+    * Both have scope holes - places where a scope does not reach because of
+        redefinition
+    * static rule talks only about regions of program text, so it can be applied at
+        compile time
+    * The dynamic rule talks about runtime events
+* Seperate Compilation
+    * Parts are compiled separately, then linked together
+    * Scope issues extend to the linker: it needs to connect references to definitions
+        cross separate compilations
+* C Approach - Compiler Side
+    * Two different kinds of definitions:
+        * Full definition
+        * Name and type only: a declaration in C-talk
+* C Approach, Linker Side
+    * When the linker runs, it treats a declarationas a reference to a name defined in
+        some other file
+    * It expects to see exactly one full definition of that name
+
+### Chapter 11 - A Fourth Look At ML
+
+* Type Definitions
+    * Predefined, but not primitive in ML:
+
+        ```ocaml
+        datatype bool = true | false;
+        ```
+    * Type constructor for lists:
+
+        ```ocaml
+        datatype 'element list = nil |
+            :: of 'element * 'element list
+        ```
+* Wrappers
+    * You can add a parameter of any type to a data constructor, using the keyword `of`
+
+        ```ocaml
+        datatype exint = Value of int | PlusInf | MinusInf;
+        ```
+    * In effect, such a constructor is a wrapper that contains a data item of the given
+        type
+    * `Value` is a data constructor that takes a parameter: the value of the int to store
+    * It looks like a function that takes an `int` and returns an `exint` containing that `int`
+* To recover a data constructor’s parameters, use pattern matching
+
+    ```ocaml
+    - val (Value y) = x;
+    val y = 5 : int
+    ```
+* Type Constructors With Parameters
+    * Type constructors can also use parameters:
+
+        ```ocaml
+        datatype 'a option = NONE | SOME of 'a;
+        ```
+    * Type constuctor parameter comes before the type constructor name
+    * We have types `'a option` and `'a list'`
+* Uses For option
+    * Used by predefined functions when the result is not always defined
+
+        ```ocaml
+        - fun optdiv a b =
+        =   if b = 0 then NONE else SOME (a div b);
+        val optdiv = fn : int -> int -> int option
+        ```
+
+### Chapter 12 - Memory Locations For Variables
+
+* A Binding Question
+    * Variables are bound (dynamically) to values
+    * How are variables bound to memory locations?
+* Function Activations
+    * Activation of a function: the lifetime from execution to return
+    * Activation-specific variable: each activation has its own binding of a variable to
+        a memory location
+* Activation Specific variables
+    * In most modern languages, activation-specific variables are the most common kind
+
+        ```ocaml
+        fun days2ms days =
+            let
+                val hours = days * 24.0
+                val minutes = hours * 60.0
+                val seconds = minutes * 60.0
+            in
+                seconds * 1000.0   end;
+        ```
+* Most imperative languages have a way to declare a variable that is bound to a single
+    memory location for the entire runtime
+* Object-oriented languages use variables whose lifetimes are associated with object
+    lifetimes
+* Scope And Lifetime Differ
+    * In most modern languages, variables with local scope have activation-specific
+        lifetimes,
+* Block Activation Records
+    * When a block is entered, space must be found for the local variables of that
+        block
+    * Can do this by either preallocating the containing function's activation record,
+        extend the functions activation record, or allocate seperate block activation
+        records
+* Static Allocation
+    * The simplest approach is to allocate one activation record for every function
+        statically
+    * This is simple and fast and used by old languages like Cobol and Fortran
+    * However, each function only gets one record and can only have on activation alive
+        at a time, which is broken for recursion or multithreading
+* Stacks Of Activation Records
+    * To support recursion: need new activation record for each activation
+    * Dynamic allocation: activation record allocated when function is called
+* Current Activation Record
+    * Location of current activation record is not known until runtime
+    * A function must know how to find the address of its current activation record
+* Nesting Functions
+    * Function definitions can be nested inside other function definitions like in ML,
+        Python, Pascal, etc
+    * An inner function needs to be able to find the address of the most recent
+        activation for the outer function
+* Functions As Parameters
+    * What happens when you pass in a function as a parameter?
+    * Functional languages allow many more kinds of operations on function-values
+    * Function-values include both parts: code to call, and nesting link to use when
+        calling it
+
+### Chapter 13 - A First Look At Java
+
+* Java Terminology
+    * Each point is an object
+    * Each includes three fields
+    * Each has three methods
+    * Each is an instance of the same class
+* Constructed Types
+    * Constructed types are all reference types: they are references to objects
+    * Includes any class, interface, or array type
+* Strings
+    * Predefined but not primitive: a class `String`
+    * The + operator has special overloading and coercion behavior for the class String
+* Operators With Side Effects
+    * An operator has a side effect if it changes something in the program environment,
+        like the value of a variable or array element
+    * Assignment is an important part of what makes a language imperative
+* Rvalues and Lvalues
+    * Why does a=1 make sense, but not 1=a?
+    * Expressions on the right must have a value, while expressions on the left must have
+        a memory location
+    * In most languages, the context decides whether the language will use the rvalue or
+        the lvalue of an expression
+    * Side-effecting expressions have both a value and a side effect
+    * Value of `x=y` is the value of `y`; side-effect is to change `x` to have that value
+* Class Method Calls
+    * Class methods define things the class itself knows how to do, not objects of the
+        class
+* Method Call Syntax:
+    * Normal instance method call
+
+        ```
+        <method-call> ::= <reference-expression>.<method-name> (<parameter-list>)
+        ```
+    * Normal class method call
+
+        ```
+        <method-call> ::= <class-name>.<method-name> (<parameter-list>)
+        ```
+    * Either kind, from within another method of the same class
+
+        ```
+        <method-call> ::= <method-name>(<parameter-list>)
+        ```
+* Object Creation Expressions
+    * Objects are created with `new`
+    * Objects are never explicitly destroyed, rather Java's garbage collection does that
+* General Operator Info
+    * All left-associative, except for assignments
+    * 15 precedence levels, use parentheses
+* References
+    * A reference is a value that uniquely identifies a particular object
+
+        ```java
+        public IntList(ConsCell s) {
+            start = s;
+        }
+        ```
+    * What gets passed to the IntList constructor is not an object — it is a reference to
+        an object
+    * Objects in Java are effectively pointers
+    * Java variable cannot hold an object, only a reference to an object
 
 
 ### Chapter 14 - Dynamic Memory Allocation
@@ -795,3 +1033,325 @@
     inti = s2.remove();
     ```
     * Notice the coercions: `int` to `Integer`
+
+### Chapter 19 - A First Look At Prolog
+
+* Terms
+    * Everything in Prolog is built from terms
+    * There are three kinds of terms: Constants: integers, real numbers, atoms,
+        Variables, and Compound terms
+* Constants
+    * Integer and real constants: 1 vs 1.23
+    * Atoms: A lowercase letter followed by any number of additional letters, digits or
+        underscores, a sequence of non-alphanumeric characters plus a few special atoms:
+        like []
+* Atoms Are Not Variables
+    * An atom can look like an ML or Java variable
+    * Atoms are more like string constants
+* Variables
+    * Most of the variables you write will start with an uppercase letter
+    * Those starting with an underscore, including \_, get special treatment
+* Compound Terms
+    * An atom followed by a parenthesized comma-seperated list of items
+
+        ```Prolog
+        x(y,z), +(1,2), .(1,[]),
+        ```
+    * Think of them as structured data
+* Terms
+    * All Prolog programs are built on terms
+
+        ```
+        <term> ::= <constant>|<variable> |<compound-term>
+        <constant> ::= <integer> |<real number> | <atom>
+        <compound-term> ::= <atom> ( <termlist> )
+        <termlist> ::= <term>|<term> , <termlist>
+        ```
+* Unification
+    * Two terms unify if there is some way of binding their variables that makes them
+        identical
+    * For instance, `parent(adam,Child)` and `parent(adam,seth)` unify by binding the variable
+        `Child` to the atom `seth`
+* The Prolog Database
+    * A Prolog language system maintains a collection of facts and rules of inference
+    * A Prolog program is just a set of data for this database, organized by facts
+    * An example of a Prolog program is
+
+        ```Prolog
+        parent(kim,holly).
+        parent(margaret,kim).
+        parent(margaret,kent).
+        parent(esther,margaret).
+        parent(herbert,margaret).
+        parent(herbert,jean).
+        ```
+* The `consult` Predicate
+    * Predefined predicate to read a program from a file into the database
+* Queries
+    * A query asks the language system to prove something, return true or false
+    * Some queries (like `consult`) are only executed for the side effects
+* Conjunctions
+    * A conjunctive query has a list of query terms separated by commas
+
+        ```Prolog
+        ?- parent(margaret,X), parent(X,holly).
+        X = kim .
+        ```
+    * The Prolog system tries prove them all
+* The Need For Rules
+    * A rule says how to prove something: to prove the head, prove the conditions
+
+        ```Prolog
+        greatgrandparent(GGP,GGC) :-
+        parent(GGP,GP),
+        parent(GP,P),
+        parent(P,GGC).
+        ```
+    * To prove `greatgrandparent(GGP,GGC)`, find some `GP` and `P` for which you can
+        prove `parent(GGP, GP)`, them `parent(GP, P)`, and then finally `parent(P, GGC)`
+* A Program With The Rule
+
+    ```Prolog
+    parent(kim,holly).
+    parent(margaret,kim).
+    parent(margaret,kent).
+    parent(esther,margaret).
+    parent(herbert,margaret).
+    parent(herbert,jean).
+    greatgrandparent(GGP,GGC) :-
+        parent(GGP,GP), parent(GP,P), parent(P,GGC).
+    ```
+    * A program consists of a list of clauses
+    * A clause is either a fact or a rule, and ends with a period
+* Recursive Rules
+
+    ```Prolog
+    ancestor(X,Y) :- parent(X,Y).
+    ancestor(X,Y) :-
+    parent(Z,Y),
+    ancestor(X,Z).
+    ```
+    * X is an ancestor of Y if:
+        * Base case: X is a parent of Y
+        * Recursive case: there is some Z such that Z is a parent of Y, and X is an
+            ancestor of Z
+* Core Prolog Syntax
+    * The core syntax of Prolog can be boiled down to
+
+        ```Prolog
+        <clause> ::=  <fact> |<rule>
+        <fact> ::=  <term> .
+        <rule> ::=  <term> :- <termlist> .
+        <termlist> ::=  <term>|<term> , <termlist>
+        ```
+* The Procedural Side
+    * A Prolog program specifies proof procedures for queries
+* The Declarative Side
+    * A rule is a logical assertion
+    * Just a formula – it doesn’t say how to doanything – it just makes an assertion
+* Declarative Languages
+    * Each piece of the program corresponds to a simple mathematical abstraction
+    * Many view it as the opposite of imperative
+* Operators
+    * An operator is just a predicate for which a special abbreviated syntax is supported
+* The `=` Predicate
+    * The goal =(X,Y) succeeds if and only if X and Y can be unified
+
+        ```Prolog
+        ?- parent(adam,seth)=parent(adam,X).
+        X = seth.
+        ```
+* Arithmetic Operators
+    * Predicates +, -, * and / are operators too, with the usual precedence and
+        associativity
+
+        ```Prolog
+        ?- X = +(1,*(2,3)).
+        X = 1+2*3.
+
+        ?- X = 1+2*3.
+        X = 1+2*3.
+        ```
+* Not Evaluated
+    * The term `+(1, *(2,3))` is not evaluated
+    * There is a way to make Prolog evaluate such term
+* Lists in Prolog
+    * Similar to ML lists, the atom [] represents the empty list
+    * A predicate . corresponds to ML’s :: operator
+
+        | ML Expression    | Prolog Term       |
+        | ---------------- |:-----------------:|
+        | []               | []                |
+        | 1::[]            | .(1,[])           |
+        | 1::2::3::[]      | .(1,.(2,.(3,[]))) |
+* The Anonymous Variable
+    * The variable \_ is an anonymous variable
+    * Every occurrence is bound independently of every other occurrence
+    * Matches any term without introducing bindings
+
+        ```Prolog
+        tailof([_|A],A).
+        ```
+    * This `tailof(X,Y)` succeeds when X is a non-empty list and Y is the tail of that
+        list
+* The not Predicate
+    * For simple applications, it often works quite a bit logical negation
+
+        ```Prolog
+        ?- member(1,[1,2,3]).
+        true .
+
+        ?- not(member(4,[1,2,3])).
+        false.
+        ```
+    * To prove `not(X)`, Prolog attempts to prove `X`
+    * `not(X)` succeeds if `X` fails
+
+### Chapter 20 - A Second Look At Prolog
+
+* Substitutions
+    * A substitution is a function that maps variables to terms:
+        $\sigma$ = {`X`$\rightarrow$`a`, `Y`$\rightarrow$`f(a,b)`}
+    * This $\sigma$ maps `X` to `a` and `Y` to `f(a,b)`
+    * The result of applying a substitution to a term is an instance of the term
+    * $\sigma$(`g(X,Y)`) = `g(a,f(a,b))` so `g(a,f(a,b))` is an instance of `g(X,Y)`
+* Unification
+    * Terms $t_1$ and $t_2$ unify if there exists a $\sigma$ such that
+        $\sigma(t_1)=\sigma(t_2)$
+    * Examples:
+        * `a` and `b` do not unify
+        * `f(X,b)` and `f(a,Y)` unify: a unifier is `{X→a, Y→b}`
+        * `f(X,b)` and `g(X,b)` do not unify
+        * `a(X,X,b)` and `a(b,X,X)` unify: a unifier is `{X→b}`
+        * `a(X,X,b)` and `a(c,X,X)` do not unify
+        * `a(X,f)` and `a(X,f)` do unify: a unifier is `{}`
+* Most General Unifier
+    * Term $x_1$ is more general than $x_2$ if $x_2$ is an instance of $x_1$ but not
+        vice-versa, so `parent(fred,Y)` is more general then `parent(fred,mary)`
+    * The most general unifier $\sigma_1$ of two terms $t_1$ and $t_2$ if there doesn't
+        exist a unifier $\sigma_2$ that is more general
+* The Occurs Check
+    * Any variable `X` and term `t` unify with `{X→t}`
+        * `X` and `f(a,g(b,c))` unify: an MGU is `{X→f(a,g(b,c))}`
+        * `X` and `f(a,Y)` unify: an MGU is `{X→f(a,Y)}`
+    * Unless `X` occurs in `t`:
+        * `X` and `f(a,X)` do not unify, in particular not by `{X→f(a,X)}`
+* A Procedural View
+    * Each clause is a procedure for proving goals
+    * Take for example `p :- q, r.` - to prove a goal, first unify the goal with p,
+        then prove q, then prove r
+* Backtracking
+    * Prolog explores all possible targets of each call, until it finds as many
+        successes as the caller requires or runs out of possibilities
+* Substitution
+
+    ![Substitution is a hidden flow of information](images/substitution.png){ width=40% }
+* Proof Trees
+    * Proof trees capture the order of traces of prove, without the code
+    * Root is original query
+    * Nodes are lists of goal terms, with one child for each clause in the program
+
+    ![This uses `solve`, which tries each of the clauses](images/proof_tree.png){ width=30% }
+    * Children of a node represent clauses, in the order they appear in the program
+    * nothing nodes, which represent clauses that do not apply to the first goal in the
+        list can be eliminated
+    * So the final, simplified tree wil look like this:
+
+    ![](images/simplified_tree.png){ width=30% }
+* Prolog Semantics
+    * A Prolog language system must act in the order given by a depth-first, left to
+        right traversal of the proof tree
+* Variable Renaming
+    * To avoid capture, use fresh variable names for each clause
+    * The first application of `reverse` might be
+
+        ```Prolog
+        reverse([Head1|Tail1],X1) :-
+            reverse(Tail1,Y1),
+            append(Y1,[Head1],X1).
+        ```
+    * The Next might be
+
+        ```Prolog
+        reverse([Head2|Tail2],X2) :-
+            reverse(Tail2,Y2),
+            append(Y2,[Head2],X2).
+        ```
+* Quoted Atoms As Strings
+    * Any string of chars enclosed by quotes is a term and treated as an atom
+    * This allows for I/O:
+
+        ```Prolog
+        ?- write('Hello world').
+        Hello world
+        true.
+
+        ?- read(X).
+        |: hello.
+        X = hello.
+        ```
+* The Cut
+    * Written !, pronounced “cut”, is a goal that always succeeds (like true), but when
+        it succeeds, it eliminates some backtracking
+    * If q1 through qj succeed, the cut does too and tells Prolog there's no going back,
+        so there is no backtracking to look for other solutions for q1 through qj
+
+        ```Prolog
+        p :- q1, q2, ..., qj, !.
+        ```
+    * the first solution found for a given goal using this rule will be the last
+        solution found for that goal
+
+### Chapter 22 - A Third Look At Prolog
+
+* Unevaluated Terms
+    * Prolog operators allow terms to be written more concisely, but are not evaluated
+    * These are all the same term:
+
+        ```Prolog
+        +(1,*(2,3))
+        1+ *(2,3)
+        +(1,2*3)
+        (1+(2*3))
+        1+2*3
+        ```
+* Evaluating Expressions
+    * The `is` predicate can be used to evaluate a term that is a numeric expression
+    * `is(X,Y)` evaluates the term `Y` and unifies `X` with the resulting atom
+    * Predicates must be defined at the time of operation
+    ```Prolog
+    ?- Y is X+2, X=1.
+    ERROR: is/2: Arguments are not sufficiently instantiated
+
+    ?- X=1, Y is X+2.
+    X = 1, Y = 3.
+    ```
+    * For `X is Y`, the predicates that appear in `Y` have to be evaluable
+* Real Values and Integers
+    * There are two numeric types: integer and real.
+    * Most of the evaluable predicates are overloaded for all combinations.
+    * Prolog is dynamically typed and types are resolved at runtime
+* Comparisons
+    * Numeric comparison operators: `<, >, =<, >=, =:=, =\=`
+    * Prolog evaluates both sides and then compares numerically
+* Equalities
+    * There are 3 types of equality in Prolog
+    * `X is Y` evaluates `Y` and unifies the result with `X`
+        * `3 is 1+2` succeeds, but `1+2 is 3` fails
+    * `X = Y` unifies `X` and `Y`, with no evaluation: both
+    * `X =:= Y` evaluates both and compares
+    * Here is any example of `mylength`
+
+        ```Prolog
+        mylength([],0).
+        mylength([_|Tail], Len) :-
+            mylength(Tail, TailLen),
+            Len is TailLen + 1.
+
+        ?-mylength([a,b,c],X).X 
+        X = 3.
+        ```
+* The `findall` Predicate
+    * `findall(X,Goal,L)` finds all ways of proving `Goal` and for each applies to `X`
+        the same substitution that made a provable instance of Goal and unigies `L` with
+        all those `X`s
