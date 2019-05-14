@@ -147,4 +147,3 @@
     /* This is also equivalent */
     | ?- is(X, 2+3).
     ```
-* 
