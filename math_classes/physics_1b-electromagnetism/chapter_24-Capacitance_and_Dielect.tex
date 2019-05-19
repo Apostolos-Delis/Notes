@@ -1,0 +1,112 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[letterpaper, portrait, margin=0.5in]{geometry}
+\usepackage[english]{babel}  % force American English hyphenation patterns
+\usepackage{amsmath,mathtools}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+
+\begin{document}
+\title{Chapter Capacitance and Dielectrics}
+\author{Apostolos Delis}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\section[24.1, Capacitors and Capacitance]{Capacitors and Capacitance}
+\begin{itemize}
+    \item A capacitor is a device that stores electric potential energy and electric charge
+    \item Any two conductors seperated by an insulator form a capacitor, in most
+        applications, capacitors start with zero net charge and electrons are transferred
+        from one conductor to another
+    \item The two conductors have charges with equal magnitude and opposite sign, and the
+        net charge as a whole remains zero
+    \item When a capacitor is said to have a charge $Q$, it means that one end will have
+        a charge of $+Q$ and one side will have a charge $-Q$
+    \item The electric field at any point in the region between the conductors is
+        proportional to the magnitude $Q$ of the charge on each conductor. It follows
+        that the potential difference $V_{ab}$ between conductors is also proportional to
+        $Q$
+    \item The ration of the charge to potential difference is known as
+        \textbf{capacitance} $C$ of the capacitor:
+        \begin{equation}
+            C = \frac{Q}{V_{ab}}
+        \end{equation}
+\end{itemize}
+
+\subsection{Calculating Capacitance: Capacitors in Vacuum}
+\begin{itemize}
+    \item We can calculate the capacitance $C$ of a given capacitor by finding the
+        potential difference $V_{ab}$ between conductors for a given charge $Q$, for now
+        consider the capacitors in a vaccum, so the empty space that seperates the
+        conductors of the capacitor
+    \item The simplest capacitor is two parallel conducting plates with area $A$, called
+        a \textbf{parallel-plate capacitor}
+    \item By using Gauss's law, we found that $E = \sigma / \epsilon_0$, where $\sigma$
+        is the magnitude of the surface charge density of each plate. so alternatively,
+        we have that $\sigma = Q / A$, so the field magnitude can be expressed as:
+        \begin{equation}
+            E = \frac{\sigma}{\epsilon_0} = \frac{Q}{\epsilon_0 A}
+        \end{equation}
+    \item The field is uniform and the distance between the plates is $d$, so the
+        potential difference between the two plates is:
+        \begin{equation}
+            V_{ab} = Ed = \frac{1}{\epsilon_0} \frac{Qd}{A}
+        \end{equation}
+    \item For any capacitor in vaccum, the capacitance $C$ only depends on the shapes,
+        dimensions, and seperation of conductors that make up the capacitor
+\end{itemize}
+
+\section[24.2, Capacitors in Series and Parallel]{Capacitors in Series and Parallel}
+Capacitors can be combined in many ways to achieve the results needed, the simplest ways
+to combine capacitors is to put them in series or in parallel.
+
+\subsection{Capacitors in Series}
+\begin{itemize}
+    \item Two capacitors are connected in series by conducting wires between points $a$
+        and $b$. When a constant positive potential difference $V_{ab}$ is applied
+        between points $a$ and $b$, the capacitors become charged
+    \item When you have $n$ capacitors, the equivalent capacitance can be found from the
+        reciprocals of the sums of all the capacitors
+        \begin{equation}
+            \frac{1}{C_{eq}} = \frac{1}{C_1} + \frac{1}{C_2} + ... + \frac{1}{C_n}
+        \end{equation}
+\end{itemize}
+
+\subsection{Capacitors in Parallel}
+\begin{itemize}
+    \item When capacitors are connected in parallel, there can be much higher total
+        capacitance, since the total amount of capacitor area is increased
+    \item When you have $n$ capacitors, the equivalent capacitance is a sum of all the
+        individual capacitors' capacitance:
+        \begin{equation}
+            C_{eq} = C_1 + C_2 + C_3 + ... + C_n
+        \end{equation}
+\end{itemize}
+
+\section{24.3, Energy Storage in Capacitors and Electric-Field Energy}
+\begin{itemize}
+    \item We can calculate the potential energy $U$ of a charged capacitor by calculating
+        the work $W$ required to charge it. When a capacitor is charged, the final charge
+        is $Q$ and the potential difference is $V$
+        \begin{equation}
+            V = \frac{Q}{C}
+        \end{equation}
+    \item Let $v$ and $q$ be the charge and potential difference, then $q = q / C$, then
+        the work $dW$ required to transfer an additional element of charge $dq$ is
+        \begin{equation}
+            dW = vdq = \frac{qdq}{C}
+        \end{equation}
+    \item The total work $W$ to increase the capacitor charge $q$ from zero to $Q$ is
+        \begin{equation}
+            {W} = \int_0^{W} dW = \frac{1}{C}\int_0^{Q} qdq = \frac{Q^2}{2C}
+        \end{equation}
+    \item We can define the potential energy of an uncharged capacitor to be zero, then
+        $W$ is equal to the potential energy $U$ of the charged capacitor. The final
+        charge is $Q = CV$ so $U$ can be expressed as:
+        \begin{equation}
+            U = \frac{Q^2}{2C} = \frac{1}{2}CV^2 = \frac{1}{2}QV
+        \end{equation}
+\end{itemize}
+\end{document}
