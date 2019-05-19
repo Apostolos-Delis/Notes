@@ -1,0 +1,155 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[letterpaper, portrait, margin=0.5in]{geometry}
+\usepackage[english]{babel}  % force American English hyphenation patterns
+\usepackage{amsmath,mathtools}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+
+\begin{document}
+\title{Chapter 23 Electric Potential}
+\author{Apostolos Delis}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\section[23.1, Electric Potential Energy]{Electric Potential Energy}
+\begin{itemize}
+    \item When a force $\vec{\mathbf{F}}$ acts on a particle that moves from point $a$ to
+        point $b$, the work done $W_{a\rightarrow b}$ by the force is given by the line
+        integral:
+        \begin{equation}
+            W_{a\rightarrow b} = \int_a^b \vec{\mathbf{F}} \cdot d \vec{\mathbf{l}} =
+            \int_a^b F\cos\phi dl
+        \end{equation}
+        where $d \vec{\mathbf{l}}$ is an infinitesimal displacement along the particle's
+        path and $\phi$ is the angle between $\vec{\mathbf{F}}$ and $d \vec{\mathbf{l}}$
+        at each point along the path
+    \item If the force $\vec{\mathbf{F}}$ is conservative, the work done by
+        $\vec{\mathbf{F}}$ can always be expressed in terms of \textbf{potential energy}
+        $U$. Then we have that
+        \begin{equation}
+            W_{a\rightarrow b} = U_a - U_b = -(U_a - U_b) = -\Delta U
+        \end{equation}
+    \item The work energy theorem states that the change in kinetic energy $\Delta K$
+        during the displacement equals the total work done on the particle. Then total
+        mechanical energy is conserved with $K_a + U_a = K_b + U_b$
+\end{itemize}
+
+\subsection{Electric Potential Energy in a Uniform Field}
+\begin{itemize}
+    \item Suppose a pair of parallel metal plates setup a uniform downward electric field
+        with magnitude $E$. The field exerts a downward force with magnitude $F = q_0E$
+        on a positive test charge $q_0$.
+    \item The charge moves down a distance $d$, from point $a$ to $b$, so the total work
+        done can be calculated as follows:
+        \begin{equation}
+            W_{a\rightarrow b} = Fd = q_0 Ed
+        \end{equation}
+    \item Whether the test charge is positive or negative, when it moves with the field
+        and decreases when it moves against the field. $U$ increases if the test charge
+        $q_0$ moves in the direction opposite of the electric force
+        $\vec{\mathbf{F}}=q_0 \vec{\mathbf{E}}$, but increases when $q_0$ moves in the
+        same direction as the electric force $\vec{\mathbf{F}}$
+\end{itemize}
+
+\subsection{Electric Potential Energy of Two Point Charges}
+\begin{itemize}
+    \item It is usefull to calculate the work done on a test charge $q_0$ moving in the
+        electric field caused by a single, stationary point charge $q$
+    \item Consider the radial component along the radial line, the force on $q_0$ is
+        given by Coulomb's law,
+        \begin{equation}
+            F_r = \frac{1}{4\pi\epsilon_0}\frac{qq_0}{r^2}
+        \end{equation}
+    \item The force is not constant during the displacement, so we must integrate to
+        calculate $W_{a\rightarrow b}$ done on $q_0$ by this force:
+        \begin{equation}
+            W_{a\rightarrow b} = \int_{r_a}^{r_b} F_r dr =
+            \int_{r_a}^{r_b} \frac{1}{4\pi\epsilon_0} \frac{qq_0}{r^2}dr =
+            \frac{qq_0}{4\pi\epsilon_0}\bigg(\frac{1}{r_a}-\frac{1}{r_b}\bigg)
+        \end{equation}
+    \item The work done by the electric force for this path depends on only the
+        endpoints, so the work done on $q_0$ by $\vec{\mathbf{E}}$ depends only on $r_a$
+        and $r_b$, not on the details of the path.
+    \item This means that if $q_0$ returns to the initial starting point, the work done
+        is $0$, this means that the force on $q_0$ is conservative
+    \item Electric potential energy is then defined as:
+        \begin{equation}
+            U = \frac{1}{4\pi\epsilon_0} \frac{qq_0}{r}
+        \end{equation}
+    \item
+\end{itemize}
+
+\subsection{Electric Potential Energy with Several Point Charges}
+\begin{itemize}
+    \item Suppose the electric field $\vec{\mathbf{E}}$ in which the charge $q_0$ moves
+        is caused by several point charges $q_1, q_2, q_3, ...$ at distances
+        $r_1, r_2, ...$ from $q_0$. The total electric field at each point is the vector
+        sum of the fields
+        \begin{equation}
+            U = \frac{q_0}{4\pi\epsilon_0}\bigg(\frac{q_1}{r_1} + \frac{q_2}{r_2} + ...  \bigg)
+            = \frac{q_0}{4\pi\epsilon_0} \sum_i \frac{q_i}{r_i}
+        \end{equation}
+    \item For every electric field due to a static charge distribution, the force exerted
+        by that field is conservative
+\end{itemize}
+
+\section[23.2, Electric Potential]{Electric Potential}
+\begin{itemize}
+    \item Potential $V$ at any point in the electric field as the potential energy per
+        unit charge, or as the potential energy $U$ per unit charge associated with $q_0$
+        \begin{equation}
+            V = \frac{U}{q_0}
+        \end{equation}
+    \item Then we can relate this to work from $a$ to $b$
+        \begin{equation}
+            \frac{W_{a\rightarrow b}}{q_0} = - \frac{\Delta U}{q_0} =
+            -\bigg(\frac{U_b}{q_0} - \frac{U_a}{q_0} \bigg) =
+            -(V_b - V_a) = V_a - V_b
+        \end{equation}
+    \item This equation states that the potential (in $V$) of $a$ with respect to $b$,
+        equals the work (in $J$) done by the electric force when a charge moves from $a$
+        to $b$
+\end{itemize}
+
+\subsection{Calculating Electric Potential}
+\begin{itemize}
+    \item To find the potential V due to a single point charge, $q$, we have
+        \begin{equation}
+            V = \frac{1}{4\pi\epsilon_0}\frac{q}{r}
+        \end{equation}
+    \item Similarly, when you have a collection of point charges:
+        \begin{equation}
+            V = \frac{1}{4\pi\epsilon_0}\sum_i \frac{q_i}{r_i}
+        \end{equation}
+    \item If we have a continuous distribution of charge along a line, over a surface, or
+        throught a volume, we divide the charge into elements $dq$ and then integrate:
+        \begin{equation}
+            V = \frac{1}{4\pi\epsilon_0}\int \frac{dq}{r}
+        \end{equation}
+\end{itemize}
+
+\subsection{Finding Electric Potential from Electric Field}
+\begin{itemize}
+    \item When given a collection of point charges, and the electric field can be found
+        easily, it is easier to determine $V$ from $\vec{\mathbf{E}}$. The force
+        $\vec{\mathbf{F}}$ on the test charge $q_0$ can be written as
+        $\vec{\mathbf{F}} = q_0 \vec{\mathbf{E}}$ so the work done by the electric force
+        is:
+        \begin{equation}
+            W_{a\rightarrow b} = \int_{a}^{b} \vec{\mathbf{F}} \cdot d \vec{\mathbf{l}} =
+            \int_{a}^{b} q_0\vec{\mathbf{E}} \cdot d \vec{\mathbf{l}}
+        \end{equation}
+    \item If we divide this by $q_0$ and compare the result, we find that:
+        \begin{equation}
+            V_a - V_b = \int_{a}^{b} \vec{\mathbf{E}} \cdot d \vec{\mathbf{l}} =
+            \int_{a}^{b} E\cos\phi dl
+        \end{equation}
+        Where $E$ is the electric field magnitude and $\phi$ is the angle between
+        $\vec{\mathbf{E}}$ and $d \vec{\mathbf{l}}$
+    \item Again the value $V_a - V_b$ is independent of the path taken from $a$ to $b$,
+        just as the value of $W_{a\rightarrow b}$ is independent of path
+\end{itemize}
+\end{document}
