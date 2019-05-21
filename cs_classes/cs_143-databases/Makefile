@@ -1,6 +1,7 @@
 MD_FILES=lecture_1.md lecture_2.md lecture_3.md lecture_4.md \
 		lecture_5.md lecture_6.md lecture_7.md lecture_8.md \
-		lecture_9.md lecture_10.md lecture_11.md lecture_12.md
+		lecture_9.md lecture_10.md lecture_11.md lecture_12.md \
+		lecture_13.md
 
 HTML_FILES=$(MD_FILES:.md=.html)
 BUILD_HTML_FILES=$(HTML_FILES:%=build/%)
