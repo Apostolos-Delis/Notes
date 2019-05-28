@@ -1,0 +1,262 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[letterpaper, portrait, margin=0.5in]{geometry}
+\usepackage[english]{babel}  % force American English hyphenation patterns
+\usepackage{amsmath,mathtools}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+
+\begin{document}
+\title{Chapter 25 Current, Resistance, and Electromotive Force}
+\author{Apostolos Delis}
+\date{\today}
+\maketitle
+
+\tableofcontents
+\section[25.1 Current]{Current}
+\begin{itemize}
+    \item A current is any motion of charge from one region to another
+    \item In electrostatic situations, the electric field is zero everywhere within the
+        conductor, and there is no current. However, this does not mean that all charges
+        within the conductor are at rest.
+    \item Consider what happens if a constant, steady electric field $\vec{\mathbf{E}}$
+        is established inside a conductor. A particle inside the conducting material is
+        then subjectued to steady force $\vec{\mathbf{F}} = q \vec{\mathbf{E}}$
+    \item If the charged particle were moving in a vacuum, this steady force would cause
+        a steady acceleration in the direction of $\vec{\mathbf{F}}$, and after a time,
+        the charged particle would be moving in that direction at high speed
+    \item A charged particle moving through a conductor however undergoes frequent
+        collisions with massive, nearly stationary ions of the material. Such collisions
+        cause the particle's direction of motion to undergo random change, with a net
+        effect of the electric field $\vec{\mathbf{E}}$ is that three is a very slow net
+        motion or drift of the moving charged particles as a group in the direction of
+        the electric force $\vec{\mathbf{F}} = q \vec{\mathbf{E}}$
+\end{itemize}
+
+\subsection{The Direction of Current Flow}
+\begin{itemize}
+    \item The electric field $\vec{\mathbf{E}}$ does work on the moving charges,
+        resulting in kinetic energy transferrred to the material of the conductor by
+        means of collisions with the ions
+    \item A conventional current is treated as a flow of positive charges, regardless of
+        whether the free charges in the conductor are positive, negative, or both.
+    \item In a metallic conductor, the moving charges are electrons, but the current
+        still points in the direction positive charges would flow.
+    \item If the net charge $dQ$ flows through an area  in a time $dt$, the current $I$
+        through the area is:
+        \begin{equation}
+            I = \frac{dQ}{dt}
+        \end{equation}
+\end{itemize}
+
+\subsection{Current, Drift Velocity, and Current}
+\begin{itemize}
+    \item We can express current in terms of the drift velocity of the moving charges.
+    \item Suppose there are $n$ moving charged particles per unit volume, then $n$ is the
+        concentration of particles, now suppose they all have a drift velocity with
+        magnitude $v_d$
+    \item In a time interval $dt$, each particle moves a distance $v_d dt$
+    \item The volume of the cylinder is $A v_d dt$ and the number of particles is
+        $nAv_{d}dt$. If each particle has a charge $q$, the charge $dQ$ flows out of the
+        end of the cylinder during the time $dt$ is:
+        \begin{equation}
+            dQ = q(nA v_d dt) = nq v_d A dt
+        \end{equation}
+    \item The current is then defined as:
+        \begin{equation}
+            I = \frac{dQ}{dt} = nqv_d A
+        \end{equation}
+    \item The current per unit cross-sectional area is called the \textbf{current
+            density} $J$
+        \begin{equation}
+            J = \frac{I}{A} = nqv_d
+        \end{equation}
+    \item So to summarize, $I$ is the current through an area, $\frac{dQ}{dt}$ is the
+        rage at which charge flows though area, $n$ is concentration of moving charged
+        particles, $q$ is charge per particle, $v_d$ is drift speed, and $A$ is
+        cross-sectional area
+\end{itemize}
+
+\section[25.2, Resistivity]{Resistivity}
+\begin{itemize}
+    \item The current density $\vec{\mathbf{J}}$ in a conductor depends on the electric
+        field $\vec{\mathbf{E}}$ and on the properties of the material
+    \item For some materials, especially metals, at a given temperature,
+        $\vec{\mathbf{J}}$ is n:nohearly directly proportional to $\vec{\mathbf{E}}$, and the
+        ratio of the magnitudes of $E$ and $J$ is nearly constant. This relationship is
+        known as Ohm's Law
+    \item We define the \textbf{resistivity} $\rho$ in terms of the magnitude of the
+        electric field divided by the magnitude of the current density caused by that
+        field:
+        \begin{equation}
+            \rho = \frac{E}{J}
+        \end{equation}
+    \item The reciprocal of resistivity is \textbf{conductivity}. With units
+        $(\Omega\cdot m)^{-1}$
+    \item A material that obey's Ohm's law reasonably well is called an ohmic conductor
+        or a linear conductor, for such materials, $\rho$ is a constant that does not
+        depend on the value of $E$
+\end{itemize}
+
+\subsection{Resistivity and Temperature}
+\begin{itemize}
+    \item The resistivity of a metallic conductor nearly always increases with increasing
+        temperature. As temperature increases, the ions in the conductor vibrate with
+        greater amplitude, making it more likely that a moving electron will collide with
+        an ion
+    \item Over a small temperature range (up to $100 C^{\circ}$), the resistivity of a
+        metal can be represented approximately by the equation:
+        \begin{equation}
+            \rho(T) = \rho_0 [1 + \alpha(T-T_0)]
+        \end{equation}
+        where $\rho_0$ is the resistivity at a reference temperature $T_0$ and $\alpha$
+        is the temperature coefficient of resistivity
+\end{itemize}
+
+\section[25.3 Resistance]{Resistance}
+\begin{itemize}
+    \item For a conductor of resistivity $\rho$, the current density $\vec{\mathbf{J}}$
+        at a point where the electric field is $\vec{\mathbf{E}}$ is given by:
+        \begin{equation}
+            \vec{\mathbf{E}} = \rho \vec{\mathbf{J}}
+        \end{equation}
+    \item Suppose our conductor is a wire with unifrom cross-sectional area $A$ and
+        length $L$. Let $V$ be the potential difference between the higher-potential and
+        lower-potential ends of the conductor, so that $V$ is positive
+    \item The direction of the current is always from the higher-potential end to the
+        lower-potential end, and this is because the current in a conductor flows in the
+        direction of $\vec{\mathbf{E}}$ and $\vec{\mathbf{E}}$ points in the direction of
+        decreasing electric potential
+    \item We can also relate the value of the current $I$ to the potential difference
+        between the ends of the conductor. If the magnitudes of the current density
+        $\vec{\mathbf{J}}$ and the electric field $\vec{\mathbf{E}}$ are unform
+        throughout the conductor, the total current $I = JA$ and the potential difference
+        is $V = EL$, which leads to:
+        \begin{equation}
+            \frac{V}{L} = \frac{\rho I}{A} \; \; \; \text{or} \; \; \; V =
+            \frac{\rho L}{A} I
+        \end{equation}
+    \item The ratio of $V$ to $I$ for a particular conductor is called its
+        \textbf{resistance} $R$
+        \begin{equation}
+            R = \frac{V}{I} = \frac{\rho L}{A}
+        \end{equation}
+        where $\rho$ is the resistivity of the conductor material, $L$ is the length of
+        the conductor, and $A$ is the cross-sectional area
+    \item If $\rho$ is constant, then so is $R$, this leads to the equation often called
+        Ohm's Law:
+        \begin{equation}
+            V = IR
+        \end{equation}
+        Where $V$ is voltage between ends of a conductor, $I$ is the current in the
+        conductor, and $R$ is the resistance in the conductor
+    \item Note that because resistivity of ta material varies with temperature, the
+        resistance of a specific conductor also varies with temperature. For small
+        temperature ranges (similar to $\rho$), we have that:
+        \begin{equation}
+            R(T) = R_0 [1 + \alpha(T - T_0)]
+        \end{equation}
+\end{itemize}
+
+\subsection{Electromotive Force}
+\begin{itemize}
+    \item \textbf{Electromotive force} is the influence that makes current flow from
+        lower to higher potential
+    \item Every complete circuit with a steady current must include a source of emf such
+        as batteries, electric generators, solar cells, etc
+    \item The SI unit of emf is the same as that for potential, the volt ($1V = 1J / C$).
+        A typical flashlight battery has an emf of $1.5V$, so the battery does $1.5J$ of
+        work on every coulomb of charge that passes through it.
+    \item An example of an ideal source of emf that maintains the potential differenve
+        between the conductors $a$ and $b$, called terminals, has associated with this
+        potential difference an electric field $\vec{\mathbf{E}}$ in the region around
+        the terminals
+    \item A charge $q$ within the source experiences an electric force
+        $\vec{\mathbf{F}}_e = q \vec{\mathbf{E}}$, but the source also provides an
+        additional influence, which is the nonelectrostatic force $\vec{\mathbf{F}}_n$,
+        which pushes charge from $b$ to $a$ in an uphill direction against the electric
+        force $\vec{\mathbf{F}}_e$
+    \item If a positive charge $q$ is moved from $b$ to $a$ inside the source, the
+        nonelectrostatic force $\vec{\mathbf{F}}_n$ does a positive amount of work
+        $W_n = q \mathcal{E}$ on the charge, and is opposite to the electrostatic force
+        $\vec{\mathbf{F}}_e$, so the potential energy increases by an $qV_{ab}$
+    \item By combining previous equations, we can see that the potential difference
+        between the ends of the wire is given by:
+        \begin{equation}
+            \mathcal{E} = V_{ab} = IR
+        \end{equation}
+\end{itemize}
+
+\subsection{Internal Resistance}
+\begin{itemize}
+    \item Real sources of emf in a circuit don't behave in exactly the way described
+        since the potential difference across a real source in a circuit is not equal to
+        the emf, since the charge moving through the material of a real source
+        encounters resistance.
+    \item This \textbf{Internal Resistance} $r$ of the source begaves according to Ohm's
+        Law, $r$ is constant and independent of the current $I$.
+    \item As the current moves through $r$, it experiences an associated drop in
+        potential equal to $Ir$, so the potential difference $V_{ab}$ between the
+        terminals is:
+        \begin{equation}
+            V_{ab} = \mathbf{E} - Ir
+        \end{equation}
+    \item The potential $V_{ab}$ is called \textbf{terminal voltage} and is less than the
+        emf $\mathcal{E}$ because of the term $Ir$ representing the potential drop
+        across the internal resistance $r$
+    \item The increase in potential energy $qV_{ab}$ as a charge $q$ moves from $b$ to
+        $a$ within the source is less than the work $q\mathcal{E}$ done by the
+        nonelectrostatic force $\vec{\mathbf{F}}_n$, since some potential energy is lost
+        in traversing the internal resistance
+\end{itemize}
+
+\section[25.5, Energy and Power In Electric Circuits0]{Energy and Power in Electric Circuits}
+\begin{itemize}
+    \item As the amount of charge $q$ passes through the circuit element, there is a
+        change in potential energy equal to $qV_{ab}$
+    \item If the potential at $a$ is lower than at $b$, then $V_{ab}$ is negative and
+        there is a net transfer of energy out the circuit, so $qV_{ab}$ can denote the
+        quantity of energy that is either delivered to a circuit element or exracted from
+        that element
+    \item If the current though the element is $I$, then in a time interval $dt$, an
+        amount of charge $dQ = Idt$ passes through the element. The potential energy
+        change for this amount of charge is $V_{ab}dQ = V_{ab}Idt$
+    \item Dividing this expression by $dt$, we obtain the rate at which energy is
+        transferrred, also known as power, denoted as:
+        \begin{equation}
+            P = V_{ab}I
+        \end{equation}
+    \item If the circuit element is a resistor, the potential difference is $V_{ab} = IR$
+        The power is thus:
+        \begin{equation}
+            P = V_{ab}I = I^2 R = \frac{V_{ab}^{2}}{R}
+        \end{equation}
+        where $R$ is the resistance of the resistor and $I$ is the current in the
+        resistor
+    \item For the power output of a source, we have that if $a$ is a higher potential
+        than point $b$, then $V_{a} > V_{b}$ and $V_{ab}$ is positive, then energy is
+        being delivered to the external circuit at a rate of:
+        \begin{equation}
+            P = V_{ab}I
+        \end{equation}
+        where
+        \begin{equation}
+            V_{ab} = \mathcal{E} - Ir
+        \end{equation}
+        so
+        \begin{equation}
+            P = V_{ab}I = \mathcal{E}I - I^2 r
+        \end{equation}
+    \item For power input into source, we have that the curent $I$ in the circuit is
+        opposite to what it was for power output, so we then have that:
+        \begin{equation}
+            V_{ab} = \mathcal{E} + Ir
+        \end{equation}
+        and than we see that for power:
+        \begin{equation}
+            P = V_{ab}I = \mathcal{E}I + I^2 r
+        \end{equation}
+\end{itemize}
+
+\end{document}
