@@ -169,12 +169,12 @@
     \sigma_{\theta_1 \vee \theta_2}(E) = \sigma_{\theta_1}(\sigma_{\theta_2})
     \end{equation}
 * These equivalence rules and join guidance are used to transform
-    some relational algebra expression $E$ to equivalent expression $E\prime$ in
+    some relational algebra expression $E$ to equivalent expression $E^{\prime}$ in
     some set of equivalent expressions $EQ$.
 * If $E$ matches some equivalent rule $R$, we transform it to an equivalent expression
-    $E\prime R(E)$, then update $EQ = EQ \cup E\prime$
-* If we have $E\prime$ for some $E$ by applying an equivalence rule to some subquery $e$,
-    then we know the rest of $E$ and $E\prime$ are identical
+    $E^{\prime} R(E)$, then update $EQ = EQ \cup E^{\prime}$
+* If we have $E^{\prime}$ for some $E$ by applying an equivalence rule to some subquery $e$,
+    then we know the rest of $E$ and $E^{\prime}$ are identical
 * The optimizer does not always need to generate all expressions. If the
     optimizer can estimate the cost associated with the plan that a particular
     generated expression will incur, we can prune it from the search.
