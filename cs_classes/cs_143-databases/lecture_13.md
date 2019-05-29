@@ -1,4 +1,4 @@
-# Lecture 11 - Multivalued Dependencies and Transactions 5/20/19
+# Lecture 13 - Multivalued Dependencies and Transactions 5/20/19
 
 ## Multivalued Dependencies (MVDs)
 

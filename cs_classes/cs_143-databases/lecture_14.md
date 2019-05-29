@@ -1,4 +1,4 @@
-# Lecture 11 - Transactions and Locking 5/20/19
+# Lecture 14 - Transactions and Locking 5/20/19
 
 ## Transactions
 

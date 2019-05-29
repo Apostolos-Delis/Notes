@@ -1,4 +1,4 @@
-# Lecture 11 - Functional Dependencies and Normalization 5/15/19
+# Lecture 12 - Functional Dependencies and Normalization 5/15/19
 
 ## Functional Dependencies and Normalization
 
