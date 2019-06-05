@@ -35,7 +35,7 @@
     3. If a schedule S is conflict equivalent to a serial schedule, we call it conflict
         serializable.
     4. Two schedules can produce the same result but not be conflict equivalent.
-* Consider some schedule $S$$. A **precedence graph** $G$ from $S$. The vertices consist
+* Consider some schedule $S$. A **precedence graph** $G$ from $S$. The vertices consist
     of the individual transactions $T_i$, with an edge from $T_i$ to $T_j$ if:
     1. $T_i$ executes `write(X)` before $T_j$ executes `read(X)`
     2. $T_i$ executes `read(X)` before $T_j$ executes write
