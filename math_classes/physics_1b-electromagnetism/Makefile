@@ -1,6 +1,7 @@
 
 TEX_FILES=$(shell find . -name *.tex)
 
+.PHONY: all
 all:
 	@latexmk -pdf $(TEX_FILES)
 
