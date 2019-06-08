@@ -1034,6 +1034,45 @@
     ```
     * Notice the coercions: `int` to `Integer`
 
+### Chapter 18 - Parameters
+
+* By Value
+    * The formal parameter is just like a local variable in the activation record of the
+        called method. The only difference is that it is initialized using the value fot
+        he corresponding actual parameter before the method executes
+    * Simplest method that is widely used, and the only method in real Java
+    * Note that pointers will still be able to be modified outside the scope of the
+        function. So objects in Java can be modified even outside the method since they
+        are only references
+* By Result
+    * Also called ***copy-out***, where the formal parameter is just like an
+        uninitialized local variable, where after the method finishes executing, the
+        final value of the formal parameter is assigned to the actual parameter
+    * The actual parameter must have an lvalue
+* By Value-Result
+    * The formal parameter is just like a local variable in the activation record of the
+        called method.
+    * It is initialized using the value of the actual parameter before the method
+        execute
+    * It is initialized using the value of the actual parameter before the method
+        executes
+    * After the method finishes executing, the final value of the formal parameter is
+        assigned to the actual parameter
+* By Reference
+    * The lvalue of the actual parameter is computed before the called method executes.
+        Inside the method, that lvalue is used as the lvalue of the formal parameter.
+    * In effect, the formal parameter is an alias for the acutal parameter
+    * When two expressions have the same lvalue, they are aliases of each other
+* By Macro Expansion
+    * The body of the macro is evaluated in the caller's context. Each actual parameter
+        is evaluated on every use of the corresponding formal parameter, in the context
+        of that occurrence of that formal parameter
+    * Done by the preprocessor
+* By Need
+    * Each actual parameter is evaluated in the caller's context, on first use of the
+        corresponding formal parameter. The value of the actual parameter is then cached.
+    * Avoids wasteful recomputations of by-name, used by lanugages like Haskell
+
 ### Chapter 19 - A First Look At Prolog
 
 * Terms
@@ -1348,7 +1387,7 @@
             mylength(Tail, TailLen),
             Len is TailLen + 1.
 
-        ?-mylength([a,b,c],X).X 
+        ?-mylength([a,b,c],X).X
         X = 3.
         ```
 * The `findall` Predicate
