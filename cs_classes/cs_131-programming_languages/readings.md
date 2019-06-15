@@ -1,4 +1,4 @@
-# Midterm Review
+# CS 131 Readings
 
 ### Chapter 1 - Programming Languages
 
