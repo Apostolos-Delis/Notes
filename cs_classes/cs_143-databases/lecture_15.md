@@ -65,6 +65,7 @@
     protocol (2PC) to manage the situation
 * The transaction only commits once the ACK has been recieved by the broker
 
+
 #### Load Balancing + Retransmits = Out of Order
 
 * Usually, a message is processed in the same order as it was delivered by the
