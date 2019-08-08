@@ -17,9 +17,13 @@ package together all the markdown files into a pdf.
 
 ### UCLA Courses
 
+
+* [CS 131 - Programming Languages](https://github.com/Apostolos-Delis/Notes/tree/master/cs_classes/cs_131-programming_languages)
+
+* [CS 143 - Database Systems](https://github.com/Apostolos-Delis/Notes/tree/master/cs_classes/cs_143-databases)
+
+
 * [Physics 1B - Electricity and Oscillations](https://github.com/Apostolos-Delis/Notes/tree/master/math_classes/physics_1b-electromagnetism)
 
-*  [CS 131 - Programming Languages](https://github.com/Apostolos-Delis/Notes/tree/master/cs_classes/cs_131-programming_languages)
-
-*  [CS 143 - Database Systems](https://github.com/Apostolos-Delis/Notes/tree/master/cs_classes/cs_143-databases)
+* [Physics 1C - Electromagnetism, Optics and Special Relativity](https://github.com/Apostolos-Delis/Notes/tree/master/math_classes/physics_1c-optics-and-special-relativity)
 
