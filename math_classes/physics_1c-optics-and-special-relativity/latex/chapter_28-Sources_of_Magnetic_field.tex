@@ -1,0 +1,159 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[letterpaper, portrait, margin=0.5in]{geometry}
+\usepackage[english]{babel}  % force American English hyphenation patterns
+\usepackage{amsmath,mathtools}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+% Use this to define a bigger dot
+% Cred: https://tex.stackexchange.com/questions/235118/making-a-thicker-cdot-for-dot-product-that-is-thinner-than-bullet/235120
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\begin{document}
+\title{Chapter 28 Sources of Magnetic field}
+\author{Apostolos Delis}
+
+\date{\today}
+\maketitle
+
+\tableofcontents
+\section[28.1, Magnetic Field of a Moving Charge]{Magnetic Field of a Moving Charge}
+\begin{itemize}
+    \item The location of the moving charge at a given instant is called the
+        \textbf{source point} and the point $P$ where we want to find the field the
+        \textbf{field point}
+    \item The magnitude of $\vec{\mathbf{B}}$ is proportional to $|q|$ and to
+        $\frac{1}{r^2}$
+    \item The magnetic field magnitude at point $P$ is:
+        \begin{equation}
+            B = \frac{\mu_0}{4\pi} \frac{|q|v\sin\phi}{r^2}
+        \end{equation}
+    \item The quantity $\mu_0$ is called the magnetic constant
+    \item The vector for the magnetic field can be calculated using:
+        \begin{equation}
+            \vec{\mathbf{B}} = \frac{\mu_0}{4\pi}
+            \frac{q\vec{\mathbf{v}} \times \mathbf{\hat{r}}}{r^2}
+        \end{equation}
+\end{itemize}
+
+\section[28.2, Magnetic Field of a Current Element]{Magnetic Field of a Current Element}
+\begin{itemize}
+    \item \textbf{Principle of superposition of magnetic fields:} the totoal magnetic
+        field caused by several moving charges is the vector sum of the fields caused by
+        the individual charges.
+    \item If there are $n$ moving charged particles per unit volume, each of charge $q$,
+        the total moving charge $dQ$ in the segment is:
+        \begin{equation}
+            dQ = nqAdl
+        \end{equation}
+    \item The magnitude of the resulting field $d\vec{\mathbf{B}}$ at any point $P$ is:
+        \begin{equation}
+            dB = \frac{\mu_0}{4\pi}\frac{|dQ|v_d\sin\phi}{r^2} =
+            \frac{\mu_0}{4\pi}\frac{n|q|v_d Adl\sin\phi}{r^2} =
+            \frac{\mu_0}{4\pi}\frac{Idl\sin\phi}{r^2}
+        \end{equation}
+        since $n|q|v_d A$ equals the current $I$ in the element
+    \item In vector form, using the unit vector $\mathbf{\hat{r}}$, we have:
+        \begin{equation}
+            dB = \frac{\mu_0}{4\pi}\frac{Id\vec{\mathbf{l}} \times \mathbf{\hat{r}}}{r^2}
+        \end{equation}
+        this equation is also known as the law of Biot and Savart
+    \item To find the total magnetic field $\vec{\mathbf{B}}$, integrate over the region:
+        \begin{equation}
+            \vec{\mathbf{B}} = \frac{\mu_0}{4\pi} \int 
+            \frac{Id\vec{\mathbf{l}} \times \mathbf{\hat{r}}}{r^2}
+        \end{equation}
+\end{itemize}
+
+\section[28.3, Magnetic Field of a Straight Current-Carrying Conductor]{Magnetic Field of
+    a Straight Current-Carrying Conductor}
+\begin{itemize}
+    \item It is useful to calculate the magnetic field produced by a straight
+        current-carrying conductor, since straight wires are found in countless
+        situations
+    \item It can be found that the total mangitude of $\vec{\mathbf{B}}$ is 
+        \begin{equation}
+            B = \frac{\mu_0}{4\pi} \int_{-a}^{a} \frac{xdy}{(x^2 + y^2)^{3 / 2}}
+        \end{equation}
+    \item When the length $2a$ of the conductor is much greater than the distance $x$
+        from the point $P$, we can consider it to be infinitely long. When
+        $a\rightarrow\infty$, we have:
+        \begin{equation}
+            B = \frac{\mu_0 I}{2\pi x}
+        \end{equation}
+    \item This follows from Gauss's law of magnetism, which as stated previously, is
+        defined as:
+        \begin{equation}
+            \oint \vec{\mathbf{B}} \bigcdot d\vec{\mathbf{A}} = 0
+        \end{equation}
+\end{itemize}
+
+\section[28.4, Force Between Parallel Conductors]{Force Between Parallel Conductors}
+\begin{itemize}
+    \item Suppose there are two long, straight parallel conductors, seperated by a
+        distance $r$, and carrying currents $I$ and $I^{\prime}$
+    \item The first conductor produces a $\vec{\mathbf{B}}$ field that, at the position
+        of the upper conductor, has magnitude 
+        \begin{equation}
+            B = \frac{\mu_0 I}{2\pi r}
+        \end{equation}
+    \item The force that the second field exerts on a length $L$ is
+        $\vec{\mathbf{F}} = I^{\prime}\vec{\mathbf{L}} \times \vec{\mathbf{B}}$, where
+        the vector $\vec{\mathbf{L}}$ is the direction of the current $I^{\prime}$ and
+        has magnitude $L$
+    \item Since $\vec{\mathbf{B}}$ is perpendicular to $\vec{\mathbf{L}}$, the magnitude
+        of the force is
+        \begin{equation}
+            F = I^{\prime}IB = \frac{\mu_0II^{\prime}L}{2\pi r}
+        \end{equation}
+    \item The force per unit length $F / L$ in this scenario is
+        \begin{equation}
+            \frac{F}{L} = \frac{\mu_0II^{\prime}}{2\pi r}
+        \end{equation}
+\end{itemize}
+
+\section[28.6 Ampere's Law]{Ampere's Law}
+\begin{itemize}
+    \item Ampere's Law provides a nice and simple way to calculate magnetic fields with
+        highly symmetric current distributions
+    \item Ampere's law is formulated not in terms of magnetic flux, but rather in terms
+        of the line integral of $\vec{\mathbf{B}}$ around a closed path, denoted by
+        \begin{equation}
+            \oint \vec{\mathbf{B}} \bigcdot d\vec{\mathbf{l}}
+        \end{equation}
+\end{itemize}
+
+\subsection{Ampere'S Law For a Long, Straight Conductor}
+\begin{itemize}
+    \item Consider the magnetic field caused by a long, straight conductor carrying a
+        current $I$. The magnetic field lines are centered on the conductor. Take a line
+        integral of $\vec{\mathbf{B}}$ around a circle with radius $r$.
+    \item At every point in the circle, $\vec{\mathbf{B}}$ and $d\vec{\mathbf{d}}$ are
+        parallel, so $\vec{\mathbf{B}} \bigcdot d\vec{\mathbf{l}} = Bdl$, because of
+        this, $B$ can be taken outside of the integral
+        \begin{equation}
+            \oint \vec{\mathbf{B}} \bigcdot d\vec{\mathbf{l}} = 
+            \oint B_{\parallel} dl = B\oint dl = 
+            \frac{\mu_0 I}{2\pi r}(2\pi r) = \mu_0 I
+        \end{equation}
+    \item So for straight conductors, Ampere's law can be reduced to:
+        \begin{equation}
+            \oint \vec{\mathbf{B}} \bigcdot d\vec{\mathbf{l}} = \mu_0 I
+        \end{equation}
+\end{itemize}
+
+\subsection{Ampere's Law: General Statement}
+\begin{itemize}
+    \item Ampere's Law can be generalized even further, the total magnetic field
+        $\vec{\mathbf{B}}$ at any point on the path is the vector sum of the fields
+        produced by the individual conductors. Thus, the line integral of the total
+        $\vec{\mathbf{B}}$ is 
+        \begin{equation}
+            \oint \vec{\mathbf{B}} \bigcdot d\vec{\mathbf{l}} = \mu_0 I_{encl}
+        \end{equation}
+\end{itemize}
+\end{document}
