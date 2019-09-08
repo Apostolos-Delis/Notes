@@ -1,0 +1,54 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[letterpaper, portrait, margin=0.5in]{geometry}
+\usepackage[english]{babel}  % force American English hyphenation patterns
+\usepackage{amsmath,mathtools}
+
+\usepackage{graphicx}
+\usepackage{wrapfig}
+
+% Use this to define a bigger dot
+% Cred: https://tex.stackexchange.com/questions/235118/making-a-thicker-cdot-for-dot-product-that-is-thinner-than-bullet/235120
+\makeatletter
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.5}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+\makeatother
+
+\begin{document}
+\title{Chapter 30 Inductance}
+\author{Apostolos Delis}
+
+\date{\today}
+\maketitle
+
+\tableofcontents
+\section[30.1, Mutual Inductance]{Mutual Inductance}
+\begin{itemize}
+    \item Suppose that there are 2 different wires, where a current flowing through
+        current 1 produces a magnetic field $\vec{\mathbf{B}}$
+    \item When $i_1$ changes, $\Phi_{B2}$ changes, this changing flux induces an emf
+        $\mathcal{E}_2$ in coil 2, given by:
+        \begin{equation}
+            \mathcal{E}_2 = -N_2 \frac{d\Phi_{B2}}{dt}
+        \end{equation}
+    \item $\Phi_{B2}$ can be represented in the form of $\Phi_{B2} = M_{21}i_1$, where
+        the proportionality constant $M_{21}$ is called mutual inductance of two coils,
+        written as:
+        \begin{equation}
+            N_2\Phi_{B2} = M_{21}i_1
+        \end{equation}
+    \item Thus $\Phi_{B2}$ can be rewritten as:
+        \begin{equation}
+            \mathcal{E}_2 = -M_{21}\frac{di_1}{dt}
+        \end{equation}
+    \item Thus we can write the definition of mutual inductance as:
+        \begin{equation}
+            M_{21} = \frac{N_2\Phi_{B2}}{i_1}
+        \end{equation}
+    \item The mutually induced emfs can be written as:
+        \begin{equation}
+            \mathcal{E}_2 = -M\frac{di_1}{dt} \; \; \; \text{and} \; \; \; 
+            \mathcal{E}_1 = -M\frac{di_2}{dt}
+        \end{equation}
+\end{itemize}
+
+\end{document}
