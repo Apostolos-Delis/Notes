@@ -1,0 +1,75 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+ 
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{proposition}[theorem]{Proposition}
+
+\title{Math 131B - Real Analysis and Metric-Space Topology}
+ 
+\begin{document}
+\section{Math 131B - Real Analysis and Metric-Space Topology}
+Apostolos Delis, UCLA 2021
+
+\begin{definition}
+A metric space is a pair $(X, d)$ where $X$ is a nonempty set and
+$d: X \times X \rightarrow [0, \infty)$
+\begin{enumerate}
+    \item $d(x,y) = 0\Leftrightarrow x = y$
+    \item $d(x,y) = d(y,x)$
+    \item $d(x,z) \le d(x,y) + d(y,z)$
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+    Let $(x_n)_{n=1}^{\infty}$ a sequence in $X$, then $\lim_{n \to \infty} d(x_n, x) = 0$
+\end{definition}
+
+\begin{proposition}
+    Let $(x_n)_{n=1}^{\infty}$ be a sequence in a metrix space, let $x_0 \in X$ and
+    $r>0$, then the open ball centered at $x_0$ of radius $r$ is
+    $B(x_0,r)=\{x\in X: d(x,x_0) < r\}$
+\end{proposition}
+
+\begin{definition}
+    Let $(X, d)$ be a metrix space. Let $E \subseteq X, x_0 \in X$ We say that
+    \begin{itemize}
+        \item $x_0$ is an interior point of $E$ if $\exists r > 0$ such that
+            $B(x_0,r)\subseteq E$
+        \item $x_0$ is an exterior point of $E$ if $x_0$ is an interior point of
+            $X\setminus E$
+        \item $x_0$ is a boundary point if it is neither an interior or an exterior point
+        \item We say that $E$ is open iff $\forall x \in E, \exists r > 0$ such that
+            $B(x_0,r) \subseteq E$
+        \item $E$ is closed if $X\setminus E$ is open
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Let $(X, d)$ be a metrix space, $E \subseteq X$, then
+    \begin{equation}
+        int(E) = \{x_0 \in X: \text{x is interior to }E\}
+    \end{equation}
+    \begin{equation}
+        ext(E) = \{x_0 \in X: \text{x is exterior to }E \}
+    \end{equation}
+    \begin{equation}
+        \partial(E) = \{x_0 \in X: \text{x is a boundary point of }E\}
+    \end{equation}
+\end{definition}
+
+\begin{proposition}
+    Let $(X, d)$ be a metrix space, $x, y, z \in X$. Then 
+    \begin{equation}
+        |d(x,y) - d(x,z)| \leq d(y,z)
+    \end{equation}
+    Furthermore, $\forall w \in X$,
+    \begin{equation}
+        |d(x,y) - d(w,z)| \leq d(x,w) + d(y,z)
+    \end{equation}
+\end{proposition}
+\end{document}
