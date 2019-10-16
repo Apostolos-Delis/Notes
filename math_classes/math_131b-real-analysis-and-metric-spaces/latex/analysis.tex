@@ -4,15 +4,16 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
- 
+
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{remark}[theorem]{Remark}
 
 \title{Math 131B - Real Analysis and Metric-Space Topology}
- 
+
 \begin{document}
 \section{Math 131B - Real Analysis and Metric-Space Topology}
 Apostolos Delis, UCLA 2021
@@ -65,7 +66,7 @@ $d: X \times X \rightarrow [0, \infty)$
 \end{definition}
 
 \begin{proposition}
-    Let $(X, d)$ be a metrix space, $x, y, z \in X$. Then 
+    Let $(X, d)$ be a metrix space, $x, y, z \in X$. Then
     \begin{equation}
         |d(x,y) - d(x,z)| \leq d(y,z)
     \end{equation}
@@ -104,9 +105,9 @@ $d: X \times X \rightarrow [0, \infty)$
 \begin{proof}
     $(\Rightarrow)$ If $x_n \rightarrow x$, then $d(x_n, x) \rightarrow 0$, so
     $d(x_{n_k}, x) \rightarrow 0$ for any subsequence $(x_{n_k})_{k=1}^{\infty})$ \\
-    $(\Leftarrow)$ let $a_n = d(x_n, x)$. Suppose $x_n \rightarrow x$, then 
+    $(\Leftarrow)$ let $a_n = d(x_n, x)$. Suppose $x_n \rightarrow x$, then
     $a_n \nrightarrow 0 \Rightarrow \exists (n_k) \forall x_{n_{k_j})} \nrightarrow x$,
-    thus $\exists\; \epsilon > 0\; \forall N \; \exists\; n \geq N$ 
+    thus $\exists\; \epsilon > 0\; \forall N \; \exists\; n \geq N$
     such that $a_n \geq \epsilon$
 \end{proof}
 
@@ -139,5 +140,184 @@ $d: X \times X \rightarrow [0, \infty)$
     $x_0 \not\in B(x,r)$, which is evident since $d(x,x_0) = r \not< r$
 \end{proof}
 
+\begin{proposition}
+    Let $(X,d)$ be a metric space. Then
+    \begin{enumerate}
+        \item $\emptyset$ and $X$ are both open and closed.
+        \item If $\{A_i : i \in I\}$ is a collection of open sets, then
+            $\bigcup\limits_{i \in I} A_i$ is open
+        \item If $A_1, ... A_n$ is a finite group of sets, then
+            $\bigcap\limits_{i \in I} A_1$ is open
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    \begin{enumerate}
+        \item $\emptyset$ contains no points so it is vacuosly open. $X$ contains all
+            balls so clearly it is open. Then \\
+            $X \setminus \emptyset = X$ so $\emptyset$ is closed
+            $X \setminus X = \emptyset$ so $X$ is closed
+        \item Let $x \in \bigcup\limits_{i\in I} A_i$ then $\forall i \in I$ such that
+            $x \in A_i$. As $A_i$ is open, $\exists r > 0$ such that
+            $B(x,r) \subseteq A_i$, as $A_i \subseteq \bigcup\limits_{i\in I} A_i$, then
+            $B(x,r) \subseteq \bigcup\limits_{i\in I} A_i$ so $A_i$ is open
+        \item Let $x\in \bigcap\limits_{i\in I} A_i$, then $\forall i \in \{1, ..., n\}$,
+            $x \in A_i$, as every $A_i$ is open, $\exists r_i > 0$ such that
+            $B(x,r_i) \subseteq A_i$. So let $r = \min\{r_1, ... , r_n\} > 0$, then as
+            $r \leq r_i$, $B(x,r) \subseteq B(x,r_i) \subseteq A_i$ so
+            $B(x,r) \subseteq \bigcap\limits_{i\in I} A_i$ so
+            $\bigcap\limits_{i\in I} A_i$ is open
+    \end{enumerate}
+\end{proof}
+
+\begin{corollary}
+    \begin{enumerate}
+        \item If $\{F_i : i \in I\}$ are closed sets, then
+            $\bigcap\limits_{i\in I} F_i$ is closed
+        \item If $F_1, ..., F_n$ are closed, then
+            $\bigcup\limits_{i\in I} F_i$ is closed
+    \end{enumerate}
+\end{corollary}
+\begin{proof}
+    \begin{enumerate}
+        \item $X \setminus \bigcap\limits_{i\in I} F_i$ =
+            $\bigcup\limits_{i\in I} (X\setminus F_i)$
+        \item $X \setminus \bigcup\limits_{i\in I} F_i$ =
+            $\bigcap\limits_{i\in I} (X\setminus F_i)$
+    \end{enumerate}
+\end{proof}
+
+\begin{proposition}
+    If $(X,d)$ is a metric space, and $E \subseteq X$, then $E$ is open iff it is a union
+    of open balls
+\end{proposition}
+\begin{proof}
+    ($\Leftarrow$) As open balls are open, unions of open sets are open \\
+    ($\Rightarrow$) if $x \in E$, then $\exists r_x>0$, such that $B(x,r_x)\subseteq E$,
+    then $\bigcap\limits_{x\in E} B(x,r_x) \subseteq E$ as each $B(x,r_x) \subseteq E$,
+    but if $x_0 \in E$, then
+    $x_0 \in B(x_0, r_{x_0}) \subseteq \bigcup\limits_{x\in E} B(x_0, r_x)$, so
+    $E \subseteq \bigcap\limits_{x\in E} B(x_0, r_x)$ so
+    $E = \bigcap\limits_{x\in E} B(x_0, r_x)$
+\end{proof}
+
+\begin{definition}
+    Let $(X, d)$ be a metric space, and $E \subseteq X$. We say $x_0 \in X$ is an
+    adherent point of $E$ if $\forall r > 0$, $B(x_0, r) \cap E \not= \emptyset$
+\end{definition}
+
+\begin{proposition}
+    Let $(X, d)$ be a metric space. $E \subseteq X, x \in X$ then the following are
+    equivalent:
+    \begin{enumerate}
+        \item $x$ is an adherent point of $E$
+        \item $x$ is an interior point of $E$
+        \item $\exists$ sequence $(x_n)_{n=1}^{\infty}$ such that $x_n \in E$
+            $forall n \geq 1$ and $x = \lim_{n\rightarrow \infty} x_n$
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    $(1) \Leftrightarrow (2)$ is an exercise, note: $(2)$ is equivalent to $x$ is
+    \textbf{not} an exterior point \\
+    $(1) \Rightarrow (3)$: $\forall n \geq 1$, $B(x, \frac{1}{n}) \cap E \not= \emptyset$.
+    So let $x_n \in B(x, \frac{1}{n})$. Then $(x_n)_{n=1}^{\infty}$ is a sequence such
+    that $x_n \in E \forall n \geq 1$. \\
+    Then $d(x, x_n) < \frac{1}{n}$ so
+    $\lim_{n\rightarrow \infty} d(x_n, x) = 0$ \\
+    $(3) \Rightarrow (1)$: Let $x \in X$, let $(x_n)_{n=1}^{\infty}$, be a sequence such
+    that $x_n \in E \forall n \geq 1$ and $x_n \rightarrow x$ as $n \rightarrow \infty$.
+    Given $r > 0$, $\exists N \geq 1$ such that $\forall n \geq N, d(x_n, x) < r$, so
+    $x_N \in B(x,r) \cap E \not= \emptyset$
+\end{proof}
+
+\begin{definition}
+    If $(X,d)$ is a metric space and $E\subseteq X$, the closure of $E$ is the set:
+    \begin{equation}
+        \overline{E} = \{x \in X : \text{x is an adherent point}\}
+    \end{equation}
+\end{definition}
+\begin{remark}
+    From the proposition above, we have that
+    \begin{equation}
+        \overline{E} = int(E) \cup \partial E
+    \end{equation}
+\end{remark}
+
+\begin{proposition}
+    The closure $\overline{E}$ of a set $E$ is closed
+\end{proposition}
+\begin{proof}
+    Prove $X \setminus \overline{E}$ is open. Suppose that $X \setminus E$ is closed.
+    Then $\exists x \in X \setminus \overline{E}$ and $\exists r > 0$ so that
+    $B(x,r) \cap E \not= \emptyset$. So $\forall r >  0$ let
+    $y \in B(x, \frac{r}{2}) \cap \overline{E}$. As $y \in \overline{E}$,
+    $B(y, \frac{r}{2}) \cap \overline{E} \not= \emptyset$ so
+    $\exists z \in B(y, \frac{r}{2}) \cap E$, then
+    $d(x,z) \leq d(x,y) + d(y,z) < \frac{r}{2} + \frac{r}{2} = r$ so
+    $z \in B(x, r) \cap E$
+\end{proof}
+
+\begin{proposition}
+    Let $(X,d)$ be a metric space, $E \subseteq X$, then the followig are equal
+    \begin{enumerate}
+        \item $E$ is closed
+        \item $E = \overline{E}$
+        \item If $(x_n)_{n=1}^{\infty}$ is a convergent subsequence and $x_n \in E$
+            $\forall n \geq 1$, then $\lim_{n \to \infty} x_n \in E$
+    \end{enumerate}
+\end{proposition}
+\begin{proof}
+    $(1) \Leftrightarrow (2)$: $E$ is closed $\Leftrightarrow X \setminus E$ is open
+    $\Leftrightarrow \forall x \in X \setminus E, \exists r > 0$ such that
+    $B(x,r) \subseteq X \setminus E \Leftrightarrow x \not\in \overline{E}$
+    $\Leftrightarrow x \in X \setminus \overline{E}$ so
+    $X \setminus E = X \setminus \overline{E}$ so $E = \overline{E}$ \\
+    $(2) \Rightarrow (3)$: As $E = \overline{E}$, use the result from earlier
+\end{proof}
+
+\begin{definition}
+    Let $(X, d)$ a metric space, $Y \subseteq X$. Let $d_y$ be the restriction of d to
+    $Y \times Y$, then $(Y, d_y)$ is an induced metric space from $(X, d)$. A subset
+    $E\subseteq Y$ is relatively open if $E$ is open in $(Y, d_y)$
+\end{definition}
+\begin{theorem}
+    Let $(X, d)$ a metric space, $Y \subseteq X, E \subseteq Y$
+    \begin{enumerate}
+        \item E is relatively open $\Leftrightarrow \exists A \subseteq X$ open in
+            $(X,d)$ such that $E = A \cap Y$
+        \item E is relatively closed $\Leftrightarrow \exists B \subseteq X$ close in
+            $(X,d)$ such that $E = B \cap Y$
+    \end{enumerate}
+\end{theorem}
+\begin{proof}
+    Denote $B_{X}(x_0, r) = \{x \in X : d(x, x_0) < r\}$,
+    $B_{Y}(y_0, r) = \{y \in Y : d(x_0, y) < r)\}$. Observe that
+    $B_{Y}(y_0, r) = B_{X}(x_0, r) \cap Y$ \\
+    $(\Rightarrow)$: $E$ is relatively open $\Rightarrow\forall x\in E,\exists r_x > 0$
+    such that $B_{Y}(y_0, r) \subseteq E$, $(E = \bigcap\limits_{x\in E} B_{X}(x, r_x))$
+    put $A = \bigcap\limits_{x\in E} B_{X}(x, r_x)$, observe that $A$ is open in $X$, and
+    that $A \cap Y = (\bigcap\limits_{x\in E} B_{X}(x, r_x)) \cap Y =$
+    $\bigcap\limits_{x\in E} (B_X(x, r) \cap Y)= \bigcap\limits_{x\in E} B_{Y}(x, r_x)=E$
+    \\
+    $(\Leftarrow)$ Let $x \in E$. Need $r_x > 0$ such that $B_{Y}(x, r_x) \subseteq E$.
+    Note $x \in E \subseteq A$. Since $A \subseteq X$ is open, $\exists r_x > 0$ such
+    that $B_{X}(x, r_x) \subseteq A \Rightarrow B_{Y}(x, r_x) = B_{X}(x, r_x) \cap Y$
+    $\subseteq A \cap Y = E \Rightarrow E$ is relatively open
+\end{proof}
+
+\begin{definition}
+    Let $(x_n)_{n=1}^{\infty}$ be a sequence in $(X, d)$. We say $(x_n)_{n=1}^{\infty}$
+    is Cauchy if $\forall \epsilon > 0$, $\exists N \in \mathbb{N}, \forall m, n > N$,
+    $d(x_n, x_m) < \epsilon$
+\end{definition}
+
+\begin{lemma}
+    If $(x_n)_{n=1}^{\infty})$ converges, then it is Cauchy
+    Note: Converse is not true
+\end{lemma}
+\begin{proof}
+    Say $\lim_{n\to \infty} x_n = x$. Then $\forall \epsilon > 0,\exists N\in \mathbb{N}$
+    $\forall n \geq N$, $d(x, x_n) < \epsilon, \Rightarrow \forall n,m \geq N$,
+    $d(x_n, x_m) \leq d(x_n, x) + d(x_m, x) < 2\epsilon$
+\end{proof}
 
 \end{document}
